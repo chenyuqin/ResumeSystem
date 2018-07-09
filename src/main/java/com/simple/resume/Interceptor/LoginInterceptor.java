@@ -52,6 +52,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         }
         // 获取请求的URL
         String url = request.getRequestURI();
+        System.out.println(url);
 
         //以下是对不拦截的url做识别并返回true(通过)
         //TODO 此处直接对所有接口做不识别(因为懒和不知道正确的逻辑)

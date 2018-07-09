@@ -139,4 +139,21 @@ public class UserController {
         userService.updateUser(user);
         return new JsonResult().toString();
     }
+
+    @RequestMapping(value = "chg_passwd", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public String chg_passwd(@RequestParam("userID") Integer userID,
+                             @RequestParam("password") String password,
+                             @RequestParam("newpassword") String newpassword) {
+        User user = userService.findByUserIDandPassword(userID, password);
+        if (user == null) {
+            JSON json = JSONSerializer.toJSON(new JsonResult<User>(1, "原密码错误!", null));
+            return json.toString();
+        }
+        user.setUpdateTime(new Date());
+        user.setPassword(newpassword);
+        userService.updateUser(user);
+        JSON json = JSONSerializer.toJSON(new JsonResult<User>(0, "修改密码成功!", null));
+        return json.toString();
+    }
 }

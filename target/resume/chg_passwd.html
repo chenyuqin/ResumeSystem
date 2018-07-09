@@ -1,0 +1,93 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <script src="./layui/layui.js"></script>
+    <link rel="stylesheet" href="./css/weadmin.css">
+    <link rel="stylesheet" href="./css/font.css">
+    <script src="./layui/lay/modules/element.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/chg_passwd.js"></script>
+    <style type="text/css">
+        body {
+            height: 600px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="weadmin-nav">
+      <span class="layui-breadcrumb">
+        <a disabled="true">首页</a>
+        <a disabled="true">个人信息</a>
+        <a><cite>信息修改</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-sm"
+       style="line-height:1.6em; margin-top:4px; margin-right: 100px; padding-left: 13px; padding-top: 5px; float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon layui-icon-refresh-3"></i> </a>
+</div>
+<div style="margin-left: 30px">
+    <div style="padding-top: 15px;padding-left: 40px">
+        <!-- <i class="layui-icon layui-icon-form " style="font-size: 40px; color:#393D49"></i> -->
+        <a disabled="true">
+            <i class="iconfont" style="font-size: 24px; color: black;margin-left: 50px">
+                &#59038;&nbsp;密码修改</i>
+        </a>
+    </div>
+    <br>
+    <div class="layui-form layui-form-pane">
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">原密码</label>
+            <div class="layui-input-inline">
+                <input type="text" id="password" lay-verify="required" placeholder="请输入旧密码" autocomplete="off"
+                class="layui-input">
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">新密码</label>
+                <div class="layui-input-inline">
+                    <input type="password" id="newpassword" lay-verify="required" placeholder="请输入新密码" autocomplete="off"
+                           class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">确认新密码</label>
+                <div class="layui-input-inline">
+                    <input type="password" id="repassword" lay-verify="required" placeholder="请再次输入新密码"
+                           autocomplete="off"
+                           class="layui-input">
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block" style="margin-left: 55px">
+                <button id="submit" class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-normal">全部重置</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    //一般直接写在一个js文件中
+    layui.use(['layer', 'form'], function () {
+        var layer = layui.layer,
+            form = layui.form;
+
+    });
+</script>
+</body>
+</html>

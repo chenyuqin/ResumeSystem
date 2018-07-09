@@ -1,6 +1,8 @@
 package com.simple.resume.common;
 
-public enum StatusEnum {
+import java.io.Serializable;
+
+public enum StatusEnum implements Serializable {
     SUCCESS(0),
     ERROR(1),
     NOTACTIVE(2),
