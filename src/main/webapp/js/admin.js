@@ -192,7 +192,7 @@ layui.define(['jquery', 'form', 'layer', 'element'], function(exports) {
 
 			}
 			CustomRightClick(id); //绑定右键菜单
-			FrameWH(); //计算框架高度
+			// FrameWH(); //计算框架高度
 
 		},
 		tabDelete: function(id) {
@@ -278,13 +278,13 @@ layui.define(['jquery', 'form', 'layer', 'element'], function(exports) {
 	/*
 	 * @todo 重新计算iframe高度
 	 */
-	function FrameWH() {
-		var h = $(window).height() - 164;
-		$("iframe").css("height", h + "px");
-	}
-	$(window).resize(function() {
-		FrameWH();
-	});
+	// function FrameWH() {
+	// 	var h = $(window).height() - 164;
+	// 	$("iframe").css("height", h + "px");
+	// }
+	// $(window).resize(function() {
+	// 	FrameWH();
+	// });
 
 	/*
 	 * @todo 弹出层，弹窗方法

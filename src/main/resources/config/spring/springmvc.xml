@@ -6,7 +6,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!--自动扫描控制器-->
-    <context:component-scan base-package="com.simple.resume.controller"/>
+    <context:component-scan base-package="com.simple.resume.controller,com.simple.resume.common"/>
     <!--视图渲染-->
     <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/"/>
@@ -18,4 +18,18 @@
 
     <!--控制器映射器和控制器适配器-->
     <mvc:annotation-driven />
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**" />
+            <mvc:exclude-mapping path="/css/*" />
+            <mvc:exclude-mapping path="/font-awesome/**" />
+            <mvc:exclude-mapping path="/fonts/*" />
+            <mvc:exclude-mapping path="/images/*" />
+            <mvc:exclude-mapping path="/js/*" />
+            <mvc:exclude-mapping path="/layui/*" />
+            <bean class="com.simple.resume.Interceptor.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>

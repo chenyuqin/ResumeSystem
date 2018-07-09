@@ -4,14 +4,12 @@ import java.io.Serializable;
 
 public class JsonResult<T> implements Serializable {
 	private static final long serialVersionUID = 1L;
-	public static final int SUCCESS = 0;
-	public static final int ERROR = 1;
 	private int state;
 	private String message = "";
 	private T data;
 
 	public JsonResult() {
-		state = SUCCESS;
+		state = StatusEnum.SUCCESS.getCode();
 	}
 
 	public JsonResult(int state, String message, T data) {
@@ -21,11 +19,11 @@ public class JsonResult<T> implements Serializable {
 	}
 
 	public JsonResult(String error) {
-		this(ERROR, error, null);
+		this(StatusEnum.ERROR.getCode(), error, null);
 	}
 
 	public JsonResult(T data) {
-		this(SUCCESS, "", data);
+		this(StatusEnum.SUCCESS.getCode(), "", data);
 	}
 
 	public JsonResult(int state) {
@@ -33,7 +31,7 @@ public class JsonResult<T> implements Serializable {
 	}
 
 	public JsonResult(Throwable e) {
-		this(ERROR, e.getMessage(), null);
+		this(StatusEnum.ERROR.getCode(), e.getMessage(), null);
 	}
 
 	public int getState() {

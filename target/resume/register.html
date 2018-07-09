@@ -14,37 +14,37 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-reset.css" rel="stylesheet">
     <!--external css-->
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet"/>
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet" />
+    <link href="css/style-responsive.css" rel="stylesheet"/>
 </head>
 
 <body class="login-body">
 
-    <div class="container">
+<div class="container">
 
-      <form class="form-signin" action="index.html">
+    <div class="form-signin">
         <h2 class="form-signin-heading"><img src="images/logo.png">&nbsp;简历系统-注册</h2>
         <div class="login-wrap">
             <p style="float: left;">请输入您的个人信息：</p>
-            <input type="text" class="form-control" placeholder="Full Name" autofocus>
-            <input type="text" class="form-control" placeholder="Phone Number" autofocus>
-            <input type="text" class="form-control" placeholder="Email Address" autofocus>
+            <input id="userName" type="text" class="form-control" placeholder="Full Name" autofocus>
+            <input id="phone" type="text" class="form-control" placeholder="Phone Number" autofocus>
+            <input id="email" type="text" class="form-control" placeholder="Email Address" autofocus>
             <div class="radios">
                 <label class="label_radio col-lg-6 col-sm-6" for="radio-01">
-                    <input name="sample-radio" id="radio-01" value="1" type="radio" checked /> Male
+                    <input name="sample-radio" id="radio-01" value="0" type="radio" checked/> Male
                 </label>
                 <label class="label_radio col-lg-6 col-sm-6" for="radio-02">
-                    <input name="sample-radio" id="radio-02" value="1" type="radio" /> Female
+                    <input name="sample-radio" id="radio-02" value="1" type="radio"/> Female
                 </label>
             </div>
             <br><br>
             <p style="float: left;"> 请输入您的账号信息：</p>
-            <input type="text" class="form-control" placeholder="User ID" autofocus>
-            <input type="password" class="form-control" placeholder="Password">
-            <input type="password" class="form-control" placeholder="Re-type Password">
-            <button class="btn btn-lg btn-login btn-block" type="submit">注 册</button>
+            <input id="userID" type="text" class="form-control" placeholder="User ID" autofocus>
+            <input id="password" type="password" class="form-control" placeholder="Password">
+            <input id="re_password" type="password" class="form-control" placeholder="Retype Password">
+            <button class="btn btn-lg btn-login btn-block" id="register">注 册</button>
 
             <div class="registration">
                 Already Registered?
@@ -55,7 +55,11 @@
             <br>
             <span style="padding-left: 100px">© 2018 S1mple</span>
         </div>
-    </form>
+    </div>
 </div>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/register.js"></script>
+
 </body>
 </html>

@@ -374,7 +374,6 @@ body {
 .x-slide_left {
   width: 17px;
   height: 61px;
-  background: url(../images/icon.png) 0 0 no-repeat;
   position: absolute;
   top: 200px;
   left: 221px;
@@ -385,7 +384,7 @@ body {
   position: absolute;
   top: 46px;
   right: 0;
-  bottom: 42px;
+  bottom: 0px;
   left: 221px;
   overflow: hidden;
   z-index: 1;

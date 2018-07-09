@@ -2,12 +2,31 @@ package com.simple.resume.pojo;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class User {
-    private int userID;
+    private Integer userID;
+
     private String userName;
+
     private String password;
-    private int sex;
+
+    private Integer sex;
+
     private String phone;
+
     private String email;
+
+    private String activeCode;
+
+    private Integer activeStatus;
+
+    private Integer isLogined;
+
+    private Date createTime;
+
+    private Date activeTime;
+
+    private Date updateTime;
 }

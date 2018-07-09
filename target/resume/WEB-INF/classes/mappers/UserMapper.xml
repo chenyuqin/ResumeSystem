@@ -1,8 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.simple.resume.mapper.UserMapper" >
+<mapper namespace="com.simple.resume.mapper.UserMapper">
     <insert id="saveUser" parameterType="com.simple.resume.pojo.User">
-        insert into user(userID,userName,password,sex,phone,email)
-        values(#{userID},#{userName},#{password},#{sex},#{phone},#{email})
+        insert into user(userID,userName,password,sex,phone,email,activeCode)
+        values(#{userID},#{userName},#{password},#{sex},#{phone},#{email},#{activeCode})
     </insert>
+
+    <select id="findByUserID" parameterType="int" resultType="int">
+        select count(*) from user where userID=#{userID};
+    </select>
+
+    <select id="findByEmail" parameterType="String" resultType="com.simple.resume.pojo.User">
+        select * from user where email=#{email};
+    </select>
+
+    <select id="findByUserIDandPassword" parameterType="Map" resultType="com.simple.resume.pojo.User">
+        select userID,userName,sex,phone,email,activeStatus,isLogined
+        from user where userID=#{userID} and password=#{password};
+    </select>
+
+    <update id="updateUser" parameterType="com.simple.resume.pojo.User">
+        update user
+        <set>
+            <if test="userName != null">
+                userName = #{userName},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="activeCode != null">
+                activeCode = #{activeCode},
+            </if>
+            <if test="activeStatus != null">
+                activeStatus = #{activeStatus},
+            </if>
+            <if test="isLogined != null">
+                isLogined = #{isLogined},
+            </if>
+            <if test="activeTime != null">
+                activeTime = #{activeTime},
+            </if>
+            <if test="updateTime != null">
+                updateTime = #{updateTime},
+            </if>
+        </set>
+        where userID = #{userID}
+    </update>
 </mapper>

@@ -13,7 +13,34 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
+    public User findByEmail(String email) {
+        User user = userMapper.findByEmail(email);
+        return user;
+    }
+
+    //根据用户ID查询是否有对应的用户存在
+    @Override
+    public int findByUserID(int userID) {
+        int userCount = userMapper.findByUserID(userID);
+        return userCount;
+    }
+
+    //保存用户
+    @Override
     public void saveUser(User user) {
         userMapper.saveUser(user);
+    }
+
+    //验证登录，根据用户ID和密码验证用户输入是否正确
+    @Override
+    public User findByUserIDandPassword(int userID, String password) {
+        User user = userMapper.findByUserIDandPassword(userID, password);
+        return user;
+    }
+
+    //将用户的激活状态activeStatus设置为1（已激活）
+    @Override
+    public void updateUser(User user) {
+        userMapper.updateUser(user);
     }
 }
