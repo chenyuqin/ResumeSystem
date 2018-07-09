@@ -6,7 +6,6 @@ import com.simple.resume.common.SendEmail;
 import com.simple.resume.common.StatusEnum;
 import com.simple.resume.pojo.User;
 import com.simple.resume.service.UserService;
-import com.sun.xml.internal.ws.api.model.wsdl.editable.EditableWSDLPart;
 import io.jsonwebtoken.Claims;
 import net.sf.json.JSON;
 import net.sf.json.JSONSerializer;

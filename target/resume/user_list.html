@@ -1,0 +1,84 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>用户列表</title>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <script src="./layui/layui.js"></script>
+    <link rel="stylesheet" href="./css/weadmin.css">
+    <link rel="stylesheet" href="./css/font.css">
+    <script src="./layui/lay/modules/element.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+
+<div class="weadmin-nav">
+   <span class="layui-breadcrumb">
+    <a disabled="true">首页</a>
+    <a disabled="true">用户管理</a>
+    <a><cite>用户列表</cite></a>
+  </span>
+    <a class="layui-btn layui-btn-sm"
+       style="line-height:1.6em; margin-top:4px; margin-right: 100px; padding-left: 13px; padding-top: 5px; float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon layui-icon-refresh-3"></i> </a>
+</div>
+
+
+<div style="margin-left: 30px;margin-right: 30px">
+    <table class="layui-table">
+        <!-- 	<colgroup>
+            <col width="150">
+            <col width="200">
+            <col>
+          </colgroup> -->
+        <thead>
+        <tr>
+            <th>User ID</th>
+            <th>用户名</th>
+            <th>性别</th>
+            <th>电话</th>
+            <th>邮箱</th>
+            <th>创建时间</th>
+            <th>是否激活</th>
+            <th>是否已投递简历</th>
+            <th>求职意向</th>
+            <th>查看</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>111</td>
+            <td>周树人</td>
+            <td>男</td>
+            <td>13417651414</td>
+            <td>424159742@qq.com</td>
+            <td>2018-07-10</td>
+            <td>是</td>
+            <td>是</td>
+            <td>Java开发工程师</td>
+            <td style="text-align: center;">
+                <button class="iconfont" style="border: none;background-color: white;">&#59110;</button>
+            </td>
+        </tr>
+        <tr>
+            <td>222</td>
+            <td>热心市民</td>
+            <td>女</td>
+            <td>13417651414</td>
+            <td>424159742@qq.com</td>
+            <td>2018-07-10</td>
+            <td>否</td>
+            <td style="background-color: #C4C4C4;"></td>
+            <td style="background-color: #C4C4C4;"></td>
+            <td style="background-color: #C4C4C4;"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</div>
+</body>
+</html>
