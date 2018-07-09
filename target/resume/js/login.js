@@ -19,6 +19,7 @@ $(function () {
                     localStorage.setItem('userID', userID);
                     localStorage.setItem('userName', result.data.userName);
                     window.location.href = "index.html";
+                    return false;
                 } else {
                     alert(result.message);
                 }

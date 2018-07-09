@@ -20,9 +20,9 @@ public class UserServiceImpl implements UserService {
 
     //根据用户ID查询是否有对应的用户存在
     @Override
-    public int findByUserID(int userID) {
-        int userCount = userMapper.findByUserID(userID);
-        return userCount;
+    public User findByUserID(int userID) {
+        User user = userMapper.findByUserID(userID);
+        return user;
     }
 
     //保存用户

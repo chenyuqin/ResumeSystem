@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface UserMapper {
     void saveUser(User user);
 
-    int findByUserID(int userID);
+    User findByUserID(int userID);
 
     User findByUserIDandPassword(@Param("userID") int userID, @Param("password") String password);
 

@@ -1,5 +1,4 @@
 $(function () {
-
     var userID = getUrlVars()["userID"];
     var userName = getUrlVars()["userName"];
     if (userID != null && userID != undefined && userName != null && userName != undefined) {

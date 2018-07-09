@@ -29,4 +29,6 @@ public class User {
     private Date activeTime;
 
     private Date updateTime;
+
+    private String description;
 }

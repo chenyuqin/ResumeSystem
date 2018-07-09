@@ -131,4 +131,12 @@ public class UserController {
         user.setPassword(password);
         userService.updateUser(user);
     }
+
+    @RequestMapping(value = "updateUser", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public String updateUser(User user) {
+        user.setUpdateTime(new Date());
+        userService.updateUser(user);
+        return new JsonResult().toString();
+    }
 }

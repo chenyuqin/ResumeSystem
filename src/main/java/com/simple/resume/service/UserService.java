@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 public interface UserService {
     void saveUser(User user);
-    int findByUserID(int userID);
+    User findByUserID(int userID);
     User findByUserIDandPassword(@Param("userID") int userID, @Param("password") String password);
     User findByEmail(String email);
     void updateUser(User user);

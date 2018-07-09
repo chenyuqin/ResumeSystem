@@ -6,8 +6,8 @@
         values(#{userID},#{userName},#{password},#{sex},#{phone},#{email},#{activeCode})
     </insert>
 
-    <select id="findByUserID" parameterType="int" resultType="int">
-        select count(*) from user where userID=#{userID};
+    <select id="findByUserID" parameterType="int" resultType="com.simple.resume.pojo.User">
+        select * from user where userID=#{userID};
     </select>
 
     <select id="findByEmail" parameterType="String" resultType="com.simple.resume.pojo.User">
@@ -15,7 +15,7 @@
     </select>
 
     <select id="findByUserIDandPassword" parameterType="Map" resultType="com.simple.resume.pojo.User">
-        select userID,userName,sex,phone,email,activeStatus,isLogined
+        select userID,userName,sex,phone,email,activeStatus,isLogined,description
         from user where userID=#{userID} and password=#{password};
     </select>
 
@@ -51,6 +51,9 @@
             </if>
             <if test="updateTime != null">
                 updateTime = #{updateTime},
+            </if>
+            <if test="description != null">
+                description = #{description},
             </if>
         </set>
         where userID = #{userID}

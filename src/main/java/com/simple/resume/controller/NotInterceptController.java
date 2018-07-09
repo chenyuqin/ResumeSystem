@@ -40,12 +40,12 @@ public class NotInterceptController {
     @RequestMapping(value = "checkUserID", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
     public String checkUserID(@RequestParam("userID") int userID) {
-        int userCount = userService.findByUserID(userID);
+        User user = userService.findByUserID(userID);
         JSON json = null;
-        if (userCount == 0) {
+        if (user == null) {
             json = JSONSerializer.toJSON(new JsonResult());
         } else {
-            json = JSONSerializer.toJSON(new JsonResult(1));
+            json = JSONSerializer.toJSON(new JsonResult<User>(1,"", user));
         }
         return json.toString();
     }
