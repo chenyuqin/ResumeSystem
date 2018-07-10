@@ -61,7 +61,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         // 获取请求的URL
         String url = request.getRequestURI();
-        System.out.println(url);
 
         // 获取Session
         HttpSession session = request.getSession();

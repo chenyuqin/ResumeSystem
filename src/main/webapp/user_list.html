@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="./css/weadmin.css">
     <link rel="stylesheet" href="./css/font.css">
     <script src="./layui/lay/modules/element.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/user_list.js"></script>
 
 </head>
 
@@ -27,58 +29,11 @@
 
 
 <div style="margin-left: 30px;margin-right: 30px">
-    <table class="layui-table">
-        <!-- 	<colgroup>
-            <col width="150">
-            <col width="200">
-            <col>
-          </colgroup> -->
-        <thead>
-        <tr>
-            <th>User ID</th>
-            <th>用户名</th>
-            <th>性别</th>
-            <th>电话</th>
-            <th>邮箱</th>
-            <th>创建时间</th>
-            <th>是否激活</th>
-            <th>是否已投递简历</th>
-            <th>求职意向</th>
-            <th>查看</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>111</td>
-            <td>周树人</td>
-            <td>男</td>
-            <td>13417651414</td>
-            <td>424159742@qq.com</td>
-            <td>2018-07-10</td>
-            <td>是</td>
-            <td>是</td>
-            <td>Java开发工程师</td>
-            <td style="text-align: center;">
-                <button class="iconfont" style="border: none;background-color: white;">&#59110;</button>
-            </td>
-        </tr>
-        <tr>
-            <td>222</td>
-            <td>热心市民</td>
-            <td>女</td>
-            <td>13417651414</td>
-            <td>424159742@qq.com</td>
-            <td>2018-07-10</td>
-            <td>否</td>
-            <td style="background-color: #C4C4C4;"></td>
-            <td style="background-color: #C4C4C4;"></td>
-            <td style="background-color: #C4C4C4;"></td>
-        </tr>
-        </tbody>
+    <table class="layui-hide" id="test">
+
     </table>
 
 </div>
-
-</div>
 </body>
+
 </html>

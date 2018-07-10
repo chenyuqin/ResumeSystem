@@ -1,11 +1,14 @@
 package com.simple.resume.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
+import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Data
-public class User {
+public class User implements Serializable {
     private Integer userID;
 
     private String userName;
@@ -24,11 +27,14 @@ public class User {
 
     private Integer isLogined;
 
-    private Date createTime;
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm")
+    private Timestamp createTime;
 
-    private Date activeTime;
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm")
+    private Timestamp activeTime;
 
-    private Date updateTime;
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm")
+    private Timestamp updateTime;
 
     private String description;
 }

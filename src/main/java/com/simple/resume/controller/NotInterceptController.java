@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -35,6 +37,9 @@ public class NotInterceptController {
 
     @Autowired
     JwtUtils jwtUtils;
+
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
     //ajax异步检测注册的userID是否存在
     @RequestMapping(value = "checkUserID", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
@@ -71,7 +76,7 @@ public class NotInterceptController {
             if (user.getActiveStatus() == 0) {
                 if (activeCode.equals(user.getActiveCode())) {
                     user.setActiveStatus(1);
-                    user.setActiveTime(new Date());
+                    user.setActiveTime(Timestamp.valueOf(df.format(new Date())));
                     userService.updateUser(user);
                     return "success";
                 }

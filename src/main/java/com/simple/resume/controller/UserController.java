@@ -1,11 +1,14 @@
 package com.simple.resume.controller;
 
+import com.simple.resume.VO.UserInfoVO;
 import com.simple.resume.common.*;
 import com.simple.resume.pojo.User;
+import com.simple.resume.service.ResumeService;
 import com.simple.resume.service.UserService;
 import io.jsonwebtoken.Claims;
 import net.sf.json.JSON;
 import net.sf.json.JSONSerializer;
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +17,12 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("user/")
@@ -28,6 +36,11 @@ public class UserController {
 
     @Autowired
     JwtUtils jwtUtils;
+
+    @Autowired
+    ResumeService resumeService;
+
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     //用户注册
     @RequestMapping(value = "register", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
@@ -136,7 +149,7 @@ public class UserController {
     @RequestMapping(value = "updateUser", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
     public String updateUser(User user) {
-        user.setUpdateTime(new Date());
+        user.setUpdateTime(Timestamp.valueOf(df.format(new Date())));
         userService.updateUser(user);
         return new JsonResult().toString();
     }
@@ -151,10 +164,33 @@ public class UserController {
             JSON json = JSONSerializer.toJSON(new JsonResult<User>(1, "原密码错误!", null));
             return json.toString();
         }
-        user.setUpdateTime(new Date());
+        user.setUpdateTime(Timestamp.valueOf(df.format(new Date())));
         user.setPassword(newpassword);
         userService.updateUser(user);
         JSON json = JSONSerializer.toJSON(new JsonResult<User>(0, "修改密码成功!", null));
+        return json.toString();
+    }
+
+    @RequestMapping(value = "userList", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public String userList() {
+        List<User> allUser = userService.findAllUser();
+        List<UserInfoVO> userInfoVOs = new ArrayList<>();
+        for (User user : allUser) {
+            System.out.println(user);
+            UserInfoVO userInfoVO = new UserInfoVO();
+            try {
+                userInfoVO.setCreate_time(user.getCreateTime().toString().substring(0, user.getCreateTime().toString().length() - 2));
+                userInfoVO.setS_sex(user.getSex() == 0 ? "男" : "女");
+                BeanUtils.copyProperties(userInfoVO, user);
+                int check = resumeService.checkByUserID(user.getUserID());
+                userInfoVO.setIsDeliver(check);
+                userInfoVOs.add(userInfoVO);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        JSON json = JSONSerializer.toJSON(new JsonResult<List<UserInfoVO>>(0, "查询用户列表成功", userInfoVOs));
         return json.toString();
     }
 }

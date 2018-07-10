@@ -15,14 +15,12 @@ public class SessionListener implements HttpSessionListener {
     @Override
 
     public void sessionCreated(HttpSessionEvent se) {
-        System.out.println("session建立");
         //设置当前会话的有效时间为30min
         se.getSession().setMaxInactiveInterval(30 * 60);
     }
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
-        System.out.println("session销毁");
         User user = new User();
         Integer userID = (Integer)se.getSession().getAttribute("userID");
         user.setUserID(userID);

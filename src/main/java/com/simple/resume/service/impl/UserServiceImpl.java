@@ -6,6 +6,8 @@ import com.simple.resume.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -16,6 +18,11 @@ public class UserServiceImpl implements UserService {
     public User findByEmail(String email) {
         User user = userMapper.findByEmail(email);
         return user;
+    }
+
+    @Override
+    public List<User> findAllUser() {
+        return userMapper.findAllUser();
     }
 
     //根据用户ID查询是否有对应的用户存在

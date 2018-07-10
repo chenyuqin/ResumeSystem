@@ -58,4 +58,8 @@
         </set>
         where userID = #{userID}
     </update>
+
+    <select id="findAllUser" resultType="com.simple.resume.pojo.User">
+        select * from user;
+    </select>
 </mapper>
