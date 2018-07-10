@@ -23,6 +23,18 @@ $(function () {
     //     }
     // });
 
+    window.onbeforeunload  =  function()
+    {
+        if((event.clientX>document.body.clientWidth&&event.clientY<0)||event.altKey)
+        {
+            alert("关闭触发");
+        }
+        else
+        {
+            alert("刷新触发");
+        }
+    };
+
     var userID = getUrlVars()["userID"];
     var userName = getUrlVars()["userName"];
     if (userID != null && userID != undefined && userName != null && userName != undefined) {

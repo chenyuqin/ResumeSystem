@@ -12,7 +12,7 @@ public class Objective {
 
     private Integer salary;
 
-    private Date ondutytime;
+    private String ondutytime;
 
     private Integer workstyle;
 

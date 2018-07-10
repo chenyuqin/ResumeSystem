@@ -11,7 +11,7 @@
  Target Server Version : 50722
  File Encoding         : 65001
 
- Date: 10/07/2018 09:48:05
+ Date: 10/07/2018 14:45:44
 */
 
 SET NAMES utf8mb4;
@@ -23,15 +23,20 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `eduBackground`;
 CREATE TABLE `eduBackground`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `startTime` datetime(0) NULL DEFAULT NULL COMMENT '开始时间',
-  `endTime` datetime(0) NULL DEFAULT NULL COMMENT '结束时间',
+  `startTime` date NULL DEFAULT NULL COMMENT '开始时间',
+  `endTime` date NULL DEFAULT NULL COMMENT '结束时间',
   `school` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '这段时间的学校',
   `major` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '专业',
   `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '教育描述。如绩点、主修课程之类',
-  `userID` int(20) NULL DEFAULT NULL COMMENT '用户ID',
+  `userID` int(20) NOT NULL COMMENT '用户ID',
   `resumeId` int(11) NULL DEFAULT NULL COMMENT '简历Id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '教育背景表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '教育背景表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of eduBackground
+-- ----------------------------
+INSERT INTO `eduBackground` VALUES (1, '2015-09-01', '2019-06-01', '华南农业大学', '网络工程', 'GPA：3.8  主修课程：计算机网络、操作系统、高级语言设计程序i、数据库原理、汇编语言、数据结构', 111, 1);
 
 -- ----------------------------
 -- Table structure for objective
@@ -41,12 +46,17 @@ CREATE TABLE `objective`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `position` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '求职意向',
   `salary` int(11) NULL DEFAULT NULL COMMENT '期待薪资',
-  `ondutytime` datetime(0) NULL DEFAULT NULL COMMENT '到岗时间',
+  `ondutytime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '到岗时间',
   `workstyle` int(3) NULL DEFAULT NULL COMMENT '工作方式，1为实习，2为全职',
   `userID` int(20) NULL DEFAULT NULL COMMENT '用户id',
   `resumeId` int(11) NULL DEFAULT NULL COMMENT '简历id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '求职意向表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '求职意向表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of objective
+-- ----------------------------
+INSERT INTO `objective` VALUES (1, '前端开发实习生', 1, '1个月内', 1, 111, 1);
 
 -- ----------------------------
 -- Table structure for resume
@@ -57,7 +67,7 @@ CREATE TABLE `resume`  (
   `userID` int(20) NULL DEFAULT NULL COMMENT '与这个简历关联的用户ID\r\n',
   `userName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名',
   `sex` int(2) NULL DEFAULT NULL COMMENT '性别',
-  `birthday` datetime(0) NULL DEFAULT NULL COMMENT '生日',
+  `birthday` date NULL DEFAULT NULL COMMENT '生日',
   `experience` int(11) NULL DEFAULT NULL COMMENT '工作年限\r\n',
   `nativePlace` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '现居地',
   `education` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '学历',
@@ -69,7 +79,12 @@ CREATE TABLE `resume`  (
   `updateTime` datetime(0) NULL DEFAULT NULL COMMENT '简历更新时间',
   `status` int(3) NULL DEFAULT 0 COMMENT '简历状态，0为未处理，1为approved，2为rejected',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '简历表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '简历表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of resume
+-- ----------------------------
+INSERT INTO `resume` VALUES (1, 111, '热心市民鑫哥', 0, '1996-09-10', 3, '华南农业大学', '本科', '13417651234', '2233134212@qq.com', NULL, '我的征途是星辰大海！', '2018-07-10 13:16:15', NULL, 0);
 
 -- ----------------------------
 -- Table structure for skill
@@ -82,7 +97,18 @@ CREATE TABLE `skill`  (
   `userID` int(20) NULL DEFAULT NULL COMMENT '用户id',
   `resumeId` int(11) NULL DEFAULT NULL COMMENT '简历id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '技能表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '技能表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of skill
+-- ----------------------------
+INSERT INTO `skill` VALUES (1, 'MySQL', 2, 111, 1);
+INSERT INTO `skill` VALUES (2, 'Java', 2, 111, 1);
+INSERT INTO `skill` VALUES (3, 'HTML', 2, 111, 1);
+INSERT INTO `skill` VALUES (4, 'JS', 2, 111, 1);
+INSERT INTO `skill` VALUES (5, '英语四级', 2, 111, 1);
+INSERT INTO `skill` VALUES (6, 'JQuery', 1, 111, 1);
+INSERT INTO `skill` VALUES (7, 'docker', 0, 111, 1);
 
 -- ----------------------------
 -- Table structure for user
@@ -109,12 +135,13 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (111, '热心市民鑫哥', '123', 0, '13417651111', '2233134212@qq.com', '0b99255602c763aa29b3da9f5e0d276c', 1, 0, '2018-07-09 09:40:54', '2018-07-09 09:41:18', '2018-07-09 16:59:53', '我就是热心市民鑫哥！');
-INSERT INTO `user` VALUES (123, '山海经', '123', 0, '123', '424159742@qq.com', '5e228a2779a4cb3c0191c5b72a641bfc', 1, 1, '2018-07-07 21:49:00', NULL, NULL, '啊啊啊啊啊啊啊');
+INSERT INTO `user` VALUES (111, '热心市民鑫哥', '123', 0, '13417651111', '2233134212@qq.com', '0b99255602c763aa29b3da9f5e0d276c', 1, 1, '2018-07-09 09:40:54', '2018-07-09 09:41:18', '2018-07-09 16:59:53', '我就是热心市民鑫哥！');
 INSERT INTO `user` VALUES (456, '狂人日记', '123', 0, '123', '52123@qq.com', '330ddd3c536c7e9e1543f556df9e3e8e', 1, 0, '2018-07-08 22:09:04', NULL, NULL, NULL);
 INSERT INTO `user` VALUES (666, '陈育钦', '123', 0, '13417651553', 'a@qq.com', NULL, 1, 0, '2018-07-07 09:21:51', NULL, NULL, NULL);
+INSERT INTO `user` VALUES (777, '野草', '123', 0, '13417651553', '424159742@qq.com', '5e228a2779a4cb3c0191c5b72a641bfc', 1, 0, '2018-07-10 10:39:42', '2018-07-10 10:40:25', '2018-07-10 10:41:24', '我就是我！');
 INSERT INTO `user` VALUES (888, '朝花夕拾', '123', 1, '123', '1234@qq.com', NULL, 1, 0, '2018-07-07 09:42:33', NULL, '2018-07-09 16:07:18', 'aaad撒旦撒');
 INSERT INTO `user` VALUES (999, '呐喊', '123', 0, '123', '123@qq.com', '487f87505f619bf9ea08f26bb34f8118', 1, 0, '2018-07-07 16:05:07', NULL, NULL, NULL);
+INSERT INTO `user` VALUES (123456, '李鑫鑫', '123', 0, '13430231', '262631052@qq.com', '07670bdb5a9ab3f389b1f057851650d5', 1, 0, '2018-07-10 11:28:16', '2018-07-10 11:30:30', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for workExperience
@@ -122,14 +149,20 @@ INSERT INTO `user` VALUES (999, '呐喊', '123', 0, '123', '123@qq.com', '487f87
 DROP TABLE IF EXISTS `workExperience`;
 CREATE TABLE `workExperience`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `startTime` datetime(0) NULL DEFAULT NULL COMMENT '工作开始时间',
-  `endTime` datetime(0) NULL DEFAULT NULL COMMENT '结束时间',
+  `startTime` date NULL DEFAULT NULL COMMENT '工作开始时间',
+  `endTime` date NULL DEFAULT NULL COMMENT '结束时间',
   `company` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '工作所在公司',
   `job` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '所做的工作',
   `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '描述当时的项目经历',
   `userID` int(20) NULL DEFAULT NULL COMMENT '用户id',
   `resumeId` int(11) NULL DEFAULT NULL COMMENT '简历id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '项目经历表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '项目经历表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of workExperience
+-- ----------------------------
+INSERT INTO `workExperience` VALUES (1, '2018-07-02', '2018-07-14', 'Tocean', '前端开发实习生', '主要负责页面的编写', 111, 1);
+INSERT INTO `workExperience` VALUES (2, '2017-07-10', '2018-06-10', '华南农业大学', '数据库设计', '主要负责数据库的相关设计', 111, 1);
 
 SET FOREIGN_KEY_CHECKS = 1;

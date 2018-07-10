@@ -112,6 +112,7 @@ public class UserController {
         user.setUserID(userID);
         user.setIsLogined(0);
         userService.updateUser(user);
+        //销毁session
         request.getSession().invalidate();
 
         Cookie userToken=new Cookie("userToken",null);
