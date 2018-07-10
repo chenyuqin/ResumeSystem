@@ -1,6 +1,8 @@
 package com.simple.resume.Interceptor;
 
 import com.simple.resume.common.JwtUtils;
+import com.simple.resume.pojo.User;
+import com.simple.resume.service.UserService;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -15,6 +17,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Autowired
     JwtUtils jwtUtils;
+
+    @Autowired
+    UserService userService;
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object arg2, Exception arg3)
@@ -32,12 +37,10 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
         //先处理cookie,如果cookie中含有remember me的token,则解析后识别为已登录(存入session中)
         Cookie[] cookies = request.getCookies();
-        if (cookies == null) {
-            response.sendRedirect("login.html");
-            return false;
-        } else {
+        if (cookies != null && cookies.length != 0) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("userToken")) {
                     String token = cookie.getValue();
@@ -45,42 +48,20 @@ public class LoginInterceptor implements HandlerInterceptor {
                     if (claims != null) {
                         Integer userID = (Integer) claims.get("userID");
                         String userName = (String) claims.get("userName");
+                        User user = new User();
+                        user.setUserID(userID);
+                        user.setIsLogined(1);
+                        userService.updateUser(user);
                         request.getSession().setAttribute("userID", userID);
+                        break;
                     }
                 }
             }
         }
+
         // 获取请求的URL
         String url = request.getRequestURI();
         System.out.println(url);
-
-        //以下是对不拦截的url做识别并返回true(通过)
-        //TODO 此处直接对所有接口做不识别(因为懒和不知道正确的逻辑)
-        if (url.indexOf(".html") < 0) {
-            return true;
-        }
-        //对登录和注册的页面做不拦截
-        if (url.indexOf("login") >= 0 || url.indexOf("register") >= 0) {
-            return true;
-        }
-        //对激活成功和失败页面做不拦截
-        if (url.indexOf("success") >= 0 || url.indexOf("failed") >= 0) {
-            return true;
-        }
-        //对邮箱修改密码的响应页面做不拦截
-        if (url.indexOf("alterPassword") >= 0 || url.indexOf("error") >= 0) {
-            return true;
-        }
-//        if (url.indexOf("alterPassword") >= 0 || url.indexOf("failed") >= 0 || url.indexOf("success") >= 0) {
-//            return true;
-//        }
-//
-//        // 注意：一些静态文件不能拦截，否则会死循环，知道内存耗尽
-//        if (url.indexOf("login") >= 0 || url.indexOf("changePassword") >= 0 || url.indexOf("register") >= 0 || url.indexOf("common") >= 0) {
-//            return true;
-//        }
-
-
 
         // 获取Session
         HttpSession session = request.getSession();
@@ -89,7 +70,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         }
         // 不符合条件的，跳转到登录界面
-        response.sendRedirect("login.html");
+        response.sendRedirect("/login.html");
         return false;
     }
 }

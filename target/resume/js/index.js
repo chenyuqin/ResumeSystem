@@ -1,27 +1,27 @@
 $(function () {
 
-    $(window).unload(function (evt) {
-        if (typeof evt == 'undefined') {
-            evt = window.event;
-        }
-        if (evt) {
-            var n = window.event.screenX - window.screenLeft;
-            var b = n > document.documentElement.scrollWidth-20;
-
-            if(b && window.event.clientY < 0 || window.event.altKey){
-                // 这个可以排除刷新 关闭的时候触发
-                var userID = localStorage.getItem("userID");
-                localStorage.setItem("userName", null);
-                localStorage.setItem("userID", null);
-                $.ajax({
-                    url: "user/logout",
-                    data: {"userID": userID},
-                    type: "get",
-                    dataType: "JSON"
-                });
-            }
-        }
-    });
+    // $(window).unload(function (evt) {
+    //     if (typeof evt == 'undefined') {
+    //         evt = window.event;
+    //     }
+    //     if (evt) {
+    //         var n = window.event.screenX - window.screenLeft;
+    //         var b = n > document.documentElement.scrollWidth-20;
+    //
+    //         if(b && window.event.clientY < 0 || window.event.altKey){
+    //             // 这个可以排除刷新 关闭的时候触发
+    //             var userID = localStorage.getItem("userID");
+    //             localStorage.setItem("userName", null);
+    //             localStorage.setItem("userID", null);
+    //             $.ajax({
+    //                 url: "user/logout",
+    //                 data: {"userID": userID},
+    //                 type: "get",
+    //                 dataType: "JSON"
+    //             });
+    //         }
+    //     }
+    // });
 
     var userID = getUrlVars()["userID"];
     var userName = getUrlVars()["userName"];
