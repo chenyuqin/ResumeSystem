@@ -177,14 +177,14 @@ public class UserController {
         List<User> allUser = userService.findAllUser();
         List<UserInfoVO> userInfoVOs = new ArrayList<>();
         for (User user : allUser) {
-            System.out.println(user);
             UserInfoVO userInfoVO = new UserInfoVO();
             try {
                 userInfoVO.setCreate_time(user.getCreateTime().toString().substring(0, user.getCreateTime().toString().length() - 2));
                 userInfoVO.setS_sex(user.getSex() == 0 ? "男" : "女");
+                userInfoVO.setA_activeStatus(user.getActiveStatus() == 0 ? "否" : "是");
                 BeanUtils.copyProperties(userInfoVO, user);
                 int check = resumeService.checkByUserID(user.getUserID());
-                userInfoVO.setIsDeliver(check);
+                userInfoVO.setIsDeliver(check == 0 ? "否" : "是");
                 userInfoVOs.add(userInfoVO);
             } catch (Exception e) {
                 e.printStackTrace();

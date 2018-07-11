@@ -21,8 +21,8 @@ public class UserInfoVO {
 
     private String create_time;
 
-    private Integer activeStatus;
+    private String a_activeStatus;
 
     //0表示未投递，1表示已投递
-    private Integer isDeliver;
+    private String isDeliver;
 }

@@ -2,6 +2,7 @@ package com.simple.resume.pojo;
 
 import lombok.Data;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Data
@@ -28,9 +29,11 @@ public class Resume {
 
     private String picture;
 
-    private Date createtime;
+    private Timestamp createTime;
 
-    private Date updatetime;
+    private Timestamp updateTime;
+
+    private Timestamp deliverTime;
 
     private Integer status;
 

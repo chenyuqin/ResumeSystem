@@ -4,4 +4,12 @@
     <select id="checkByUserID" parameterType="int" resultType="int">
         select count(*) from resume where userID=#{userID};
     </select>
+
+    <select id="findAllByStatus" parameterType="int" resultType="com.simple.resume.pojo.Resume">
+        select * from resume where status=#{status};
+    </select>
+
+    <select id="findByUserID" parameterType="int" resultType="com.simple.resume.pojo.Resume">
+        select * from resume where userID=#{userID};
+    </select>
 </mapper>

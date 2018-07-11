@@ -28,12 +28,23 @@
 </div>
 
 
-<div style="margin-left: 30px;margin-right: 30px">
+<div style="margin-left: 30px;margin-right: 30px;margin-top: 9px">
+    <span style="font-size: 17px;">&nbsp;用户列表:</span>
     <table class="layui-hide" id="test">
 
     </table>
 
 </div>
 </body>
+<!--<script type="text/html" id="barDemo">-->
+    <!--<a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>-->
+<!--</script>-->
+<script type="text/html" id="view">
+    {{#  if(d.isDeliver === '是'){ }}
+        <a class="layui-btn layui-btn-xs" lay-event="detail" disabled="true">查看</a>
+    {{#  } else { }}
+        <i class="iconfont" style="color: red">&#59063;</i>
+    {{#  } }}
+</script>
 
 </html>
