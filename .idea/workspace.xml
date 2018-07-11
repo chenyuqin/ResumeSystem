@@ -7,40 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f02974cf-833c-4980-b648-ecbe07df03cc" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/resume/VO/UserInfoVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/resume/VO/UserInfoVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/resume/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/resume/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/resume/mapper/ResumeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/resume/mapper/ResumeMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/resume/pojo/Resume.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/resume/pojo/Resume.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/resume/service/ResumeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/resume/service/ResumeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simple/resume/service/impl/ResumeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simple/resume/service/impl/ResumeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/ResumeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/ResumeMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/user_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/user_list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resume_Approved.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resume_Approved.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resume_Rejected.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resume_Rejected.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resume_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resume_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resume_preview.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resume_preview.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/skill_search.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/skill_search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/user_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/user_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/simple/resume/VO/UserInfoVO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/simple/resume/VO/UserInfoVO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/simple/resume/controller/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/simple/resume/mapper/ResumeMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/simple/resume/pojo/Resume.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/simple/resume/pojo/Resume.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/simple/resume/service/ResumeService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/simple/resume/service/impl/ResumeServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mappers/ResumeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/ResumeMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/resume/WEB-INF/classes/com/simple/resume/VO/UserInfoVO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/resume/WEB-INF/classes/com/simple/resume/VO/UserInfoVO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/resume/WEB-INF/classes/com/simple/resume/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/resume/WEB-INF/classes/com/simple/resume/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/resume/WEB-INF/classes/com/simple/resume/mapper/ResumeMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/resume/WEB-INF/classes/com/simple/resume/mapper/ResumeMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/resume/WEB-INF/classes/com/simple/resume/pojo/Resume.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/resume/WEB-INF/classes/com/simple/resume/pojo/Resume.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/resume/WEB-INF/classes/com/simple/resume/service/ResumeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/resume/WEB-INF/classes/com/simple/resume/service/ResumeService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/resume/WEB-INF/classes/com/simple/resume/service/impl/ResumeServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/resume/WEB-INF/classes/com/simple/resume/service/impl/ResumeServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/resume/WEB-INF/classes/mappers/ResumeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/resume/WEB-INF/classes/mappers/ResumeMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/resume/js/user_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/resume/js/user_list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/resume/resume_Approved.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/resume/resume_Approved.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/resume/resume_Rejected.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/resume/resume_Rejected.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/resume/resume_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/resume/resume_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/resume/resume_preview.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/resume/resume_preview.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/resume/user_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/resume/user_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/SkillMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/SkillMapper.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,7 +21,26 @@
     <option name="MAKE_PROJECT_ON_SAVE" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="ResumeMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/ResumeMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SkillMapper.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/SkillMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="4" column="62" selection-start-line="4" selection-start-column="62" selection-end-line="4" selection-end-column="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -137,7 +123,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/js/resume_Approved.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/simple/resume/VO/SkillSearchVO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/simple/resume/mapper/SkillMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mappers/SkillMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/simple/resume/service/SkillService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/simple/resume/service/impl/SkillServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/simple/resume/controller/SkillController.java" />
@@ -149,6 +134,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/user_list.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/skill_search.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/skill_search.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/mappers/SkillMapper.xml" />
       </list>
     </option>
   </component>
@@ -197,7 +183,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="width" value="1870" />
     <option name="height" value="1016" />
   </component>
@@ -587,12 +573,12 @@
       <workItem from="1531118417568" duration="17529000" />
       <workItem from="1531184825649" duration="24694000" />
       <workItem from="1531225222589" duration="8936000" />
-      <workItem from="1531237710921" duration="5528000" />
+      <workItem from="1531237710921" duration="6085000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140155000" />
+    <option name="totallyTimeSpent" value="140712000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -604,7 +590,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="26" width="1920" height="1054" extended-state="7" />
+    <frame x="0" y="26" width="1920" height="1054" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="15" side_tool="true" />
@@ -625,10 +612,10 @@
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Version Control" order="13" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2963374" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2963374" />
       <window_info anchor="bottom" id="Spring" order="8" weight="0.32963374" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32967034" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31525242" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31525242" />
       <window_info anchor="bottom" id="Problems" order="14" weight="0.32963374" />
       <window_info id="Web" order="6" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="7" />
@@ -848,13 +835,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/SkillMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="8" column="51" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/simple/resume/VO/ResumeListVO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
@@ -889,13 +869,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/ResumeMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1051,6 +1024,20 @@
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/ResumeMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/SkillMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="4" column="62" selection-start-line="4" selection-start-column="62" selection-end-line="4" selection-end-column="62" />
         </state>
       </provider>
     </entry>
