@@ -21,11 +21,11 @@ public class SessionListener implements HttpSessionListener {
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
-        User user = new User();
-        Integer userID = (Integer)se.getSession().getAttribute("userID");
-        user.setUserID(userID);
-        user.setIsLogined(0);
-        userService.updateUser(user);
-        se.getSession().invalidate();
+//        User user = new User();
+//        Integer userID = (Integer)se.getSession().getAttribute("userID");
+//        user.setUserID(userID);
+//        user.setIsLogined(0);
+//        userService.updateUser(user);
+//        se.getSession().invalidate();
     }
 }

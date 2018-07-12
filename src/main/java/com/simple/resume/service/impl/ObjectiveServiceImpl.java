@@ -2,6 +2,7 @@ package com.simple.resume.service.impl;
 
 import com.simple.resume.mapper.ObjectiveMapper;
 import com.simple.resume.mapper.ResumeMapper;
+import com.simple.resume.pojo.EduBackground;
 import com.simple.resume.pojo.Objective;
 import com.simple.resume.pojo.Resume;
 import com.simple.resume.service.ObjectiveService;
@@ -22,4 +23,13 @@ public class ObjectiveServiceImpl implements ObjectiveService {
         return objectiveMapper.findByResumeId(resumeId);
     }
 
+    @Override
+    public void saveObjective(Objective objective) {
+        objectiveMapper.saveObjective(objective);
+    }
+
+    @Override
+    public void updateObjective(Objective objective) {
+        objectiveMapper.updateObjective(objective);
+    }
 }

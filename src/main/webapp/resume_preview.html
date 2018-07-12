@@ -1,419 +1,346 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>预览简历</title>
-		<meta name="renderer" content="webkit">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-		<script src="js/jquery-2.1.4.min.js"></script>
-		<link rel="stylesheet" href="css/font.css">
-		<link rel="stylesheet" href="css/weadmin.css">
-		<script type="application/javascript" src="layui/layui.all.js"></script>
-		<script type="application/javascript" src="layui/layui.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>预览简历</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/resume_preview.js"></script>
+    <script type="application/javascript" src="layui/layui.all.js"></script>
+    <script type="application/javascript" src="layui/layui.js"></script>
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/weadmin.css">
 
-	  	<style type="text/css">
-      		body{
-        		margin-left: 0px;
-        		height: 600px;
-      		}
-    	</style>
+    <style type="text/css">
+        body {
+            margin-left: 0px;
+            height: 600px;
+        }
+    </style>
 
 
+</head>
 
-	</head>
-
-	<body>
-		<div class="weadmin-nav">
+<body>
+<div class="weadmin-nav">
       		<span class="layui-breadcrumb">
         		<a disabled="true">首页</a>
             <a disabled="true">个人简历</a>
         		<a><cite>预览简历</cite></a>
      		 </span>
-      		<a class="layui-btn layui-btn-sm" style="line-height:1.6em; margin-top:4px; margin-right: 100px; padding-left: 13px; padding-top: 5px; float:right" href="javascript:location.replace(location.href);" title="刷新">
-        	<i class="layui-icon layui-icon-refresh-3"></i>    </a>
-    	</div>
+    <a class="layui-btn layui-btn-sm"
+       style="line-height:1.6em; margin-top:4px; margin-right: 100px; padding-left: 13px; padding-top: 5px; float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon layui-icon-refresh-3"></i> </a>
+</div>
 
 <div style="margin-left: 30px">
 
     <div style="padding-top: 15px;padding-left: 367px">
-<!--       <i class="layui-icon layui-icon-template-1 " style="font-size: 40px; color:#393D49"></i>
-      <a style="font-size: 20px; color: black;">&nbsp;创建简历</a> -->
-      <a disabled="true">
+        <!--       <i class="layui-icon layui-icon-template-1 " style="font-size: 40px; color:#393D49"></i>
+              <a style="font-size: 20px; color: black;">&nbsp;创建简历</a> -->
+        <a disabled="true">
             <i class="iconfont" style="font-size: 24px; color: black;">&#59059;&nbsp;&nbsp;预览简历</i>
         </a>
     </div>
 
-    	<table class="layui-table" lay-skin="line" style="width:70%">
+    <table class="layui-table" lay-skin="line" style="width:70%">
 
-  			<thead>
-    			<tr>
-    				<th style="font-size: 18px;font-weight: bold;">基本信息</th>
-    			</tr>
-  			</thead>
-  			<tbody>
-  				<form>
-      				<div class="layui-form-item">
-      					<tr>
-      						<td>
-   			 					<div class="layui-inline">
-    								<label class="layui-form-label">
-    									姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名
-    								</label>
-    								<div class="layui-input-block " >
-      									<input type="text" name="name" class="layui-input" value="李鑫" disabled="disabled">
-   					 				</div>
-   					 			</div>
-   					 			<div class="layui-inline">
-    								<label class="layui-form-label">
-    									性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别
-    								</label>
-    								<div class="layui-input-block">
-    									<input type="text" name="name" class="layui-input" value="男" disabled="disabled">
-    								</div>
-    							</div>
-    						</td>
-    					</tr>
-    				</div>
-    				<div class="layui-form-item">
-      					<tr>
-      						<td>
-   			 					<div class="layui-inline">
-    								<label class="layui-form-label">
-    									出生年月
-    								</label>
-    								<div class="layui-input-block " >
-      									<input type="text" name="birth" class="layui-input" value="1997-07" disabled="disabled">
-   					 				</div>
-   					 			</div>
-   					 			<div class="layui-inline">
-    								<label class="layui-form-label">
-    									工作经验
-    								</label>
-    								<div class="layui-input-block">
-    									<input type="text" name="experience" class="layui-input" value="1~2年" disabled="disabled">
-    								</div>
-    							</div>
-    						</td>
-    					</tr>
-    				</div>
-    				<div class="layui-form-item">
-      					<tr>
-      						<td>
-   			 					<div class="layui-inline">
-    								<label class="layui-form-label">
-    									手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机
-    								</label>
-    								<div class="layui-input-block " >
-      									<input type="text" name="phone" class="layui-input" value="13416141109" disabled="disabled">
-   					 				</div>
-   					 			</div>
-   					 			<div class="layui-inline">
-    								<label class="layui-form-label">
-    									学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历
-    								</label>
-    								<div class="layui-input-block">
-    									<input type="text" name="educatior" class="layui-input" value="本科" disabled="disabled">
-    								</div>
-    							</div>
-    						</td>
-    					</tr>
-    				</div>
-    				<div class="layui-form-item">
-      					<tr>
-      						<td>
-   			 					<div class="layui-inline">
-    								<label class="layui-form-label">
-    									邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱
-    								</label>
-    								<div class="layui-input-block " >
-      									<input type="text" name="email" class="layui-input" value="1453467890@qq.com" disabled="disabled">
-   					 				</div>
-   					 			</div>
-   					 			<div class="layui-inline">
-    								<label class="layui-form-label">
-    									现居住地
-    								</label>
-    								<div class="layui-input-block">
-    									<input type="text" name="address" class="layui-input" value="华山16栋天台" disabled="disabled">
-    								</div>
-    							</div>
-    						</td>
-    					</tr>
-    				</div>
-  				</form>
-  			</tbody>
+        <thead>
+        <tr>
+            <th style="font-size: 18px;font-weight: bold;">基本信息</th>
+        </tr>
+        </thead>
+        <tbody>
+        <form>
+            <div class="layui-form-item">
+                <tr>
+                    <td>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">
+                                姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名
+                            </label>
+                            <div class="layui-input-block ">
+                                <input type="text" name="userName" class="layui-input" value="" disabled="disabled">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">
+                                性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别
+                            </label>
+                            <div class="layui-input-block">
+                                <input type="text" name="sex" class="layui-input" value="" disabled="disabled">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </div>
+            <div class="layui-form-item">
+                <tr>
+                    <td>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">
+                                出生年月
+                            </label>
+                            <div class="layui-input-block ">
+                                <input type="text" name="birthday" class="layui-input" value=""
+                                       disabled="disabled">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">
+                                工作经验
+                            </label>
+                            <div class="layui-input-block">
+                                <input type="text" name="experience" class="layui-input" value=""
+                                       disabled="disabled">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </div>
+            <div class="layui-form-item">
+                <tr>
+                    <td>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">
+                                手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机
+                            </label>
+                            <div class="layui-input-block ">
+                                <input type="text" name="phone" class="layui-input" value=""
+                                       disabled="disabled">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">
+                                学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历
+                            </label>
+                            <div class="layui-input-block">
+                                <input type="text" name="education" class="layui-input" value="" disabled="disabled">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </div>
+            <div class="layui-form-item">
+                <tr>
+                    <td>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">
+                                邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱
+                            </label>
+                            <div class="layui-input-block ">
+                                <input type="text" name="email" class="layui-input" value=""
+                                       disabled="disabled">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">
+                                现居住地
+                            </label>
+                            <div class="layui-input-block">
+                                <input type="text" name="nativePlace" class="layui-input" value=""
+                                       disabled="disabled">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </div>
+        </form>
+        </tbody>
 
-  			<thead>
-    			<tr>
-    				<th style="font-size: 18px;font-weight: bold;">教育背景</th>
-    			</tr>
-  			</thead>
-  			<tbody>
-  				<div class="layui-form-item">
-      					<tr>
-      						<td>
-   			 					<div class="layui-inline">
-    								<label class="layui-form-label">
-    									开始时间
-    								</label>
-    								<div class="layui-input-block " >
-      									<input type="text" name="startTime" class="layui-input" value="2015-09-01" disabled="disabled">
-   					 				</div>
-   					 			</div>
-   					 			<div class="layui-inline">
-    								<label class="layui-form-label">
-    									结束时间
-    								</label>
-    								<div class="layui-input-block">
-    									<input type="text" name="endTime" class="layui-input" value="2019-06-30" disabled="disabled">
-    								</div>
-    							</div>
-    						</td>
-    					</tr>
-    				</div>
-    				<div class="layui-form-item">
-      					<tr>
-      						<td>
-   			 					<div class="layui-inline">
-    								<label class="layui-form-label">
-    									毕业院校
-    								</label>
-    								<div class="layui-input-block " >
-      									<input type="text" name="school" class="layui-input" value="华南农业大学" disabled="disabled">
-   					 				</div>
-   					 			</div>
-   					 			<div class="layui-inline">
-    								<label class="layui-form-label">
-    									所修专业
-    								</label>
-    								<div class="layui-input-block">
-    									<input type="text" name="major" class="layui-input" value="网络工程" disabled="disabled">
-    								</div>
-    							</div>
-    						</td>
-    					</tr>
-    				</div>
-    				<div class="layui-form-item">
-      					<tr>
-      						<td>
-    							<label class="layui-form-label">
-    								在校经历
-    							</label>
-    							<div class="layui-input-block " style="width: 60.5%" >
-      								<textarea name="description"  class="layui-textarea" disabled="disabled">本人在校期间打架抽烟喝酒赌博，无所不为。
+        <thead>
+        <tr>
+            <th style="font-size: 18px;font-weight: bold;">教育背景</th>
+        </tr>
+        </thead>
+        <tbody>
+        <div class="layui-form-item">
+            <tr>
+                <td>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">
+                            开始时间
+                        </label>
+                        <div class="layui-input-block ">
+                            <input type="text" name="startTime" class="layui-input" value=""
+                                   disabled="disabled">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">
+                            结束时间
+                        </label>
+                        <div class="layui-input-block">
+                            <input type="text" name="endTime" class="layui-input" value=""
+                                   disabled="disabled">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </div>
+        <div class="layui-form-item">
+            <tr>
+                <td>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">
+                            毕业院校
+                        </label>
+                        <div class="layui-input-block ">
+                            <input type="text" name="school" class="layui-input" value="" disabled="disabled">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">
+                            所修专业
+                        </label>
+                        <div class="layui-input-block">
+                            <input type="text" name="major" class="layui-input" value="" disabled="disabled">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </div>
+        <div class="layui-form-item">
+            <tr>
+                <td>
+                    <label class="layui-form-label">
+                        在校经历
+                    </label>
+                    <div class="layui-input-block " style="width: 60.5%">
+      								<textarea name="description" class="layui-textarea" disabled="disabled">
       								</textarea>
-   					 			</div>
-    						</td>
-    					</tr>
-    				</div>
-  			</tbody>
+                    </div>
+                </td>
+            </tr>
+        </div>
+        </tbody>
 
-  			<thead>
-    			<tr>
-    				<th style="font-size: 18px;font-weight: bold;">求职意向</th>
-    			</tr>
-  			</thead>
-  			<tbody>
-  				<div class="layui-form-item">
-      					<tr>
-      						<td>
-   			 					<div class="layui-inline">
-    								<label class="layui-form-label">
-    									期望职位
-    								</label>
-    								<div class="layui-input-block " >
-      									<input type="text" name="position" class="layui-input" value="bug毒瘤" disabled="disabled">
-   					 				</div>
-   					 			</div>
-   					 			<div class="layui-inline">
-    								<label class="layui-form-label">
-    									期望薪资
-    								</label>
-    								<div class="layui-input-block">
-    									<input type="text" name="salary" class="layui-input" value="2000~2999元/月" disabled="disabled">
-    								</div>
-    							</div>
-    						</td>
-    					</tr>
-    				</div>
-    				<div class="layui-form-item">
-      					<tr>
-      						<td>
-   			 					<div class="layui-inline">
-    								<label class="layui-form-label">
-    									到岗时间
-    								</label>
-    								<div class="layui-input-block " >
-      									<input type="text" name="ondutyTime" class="layui-input" value="1个月内" disabled="disabled">
-   					 				</div>
-   					 			</div>
-   					 			<div class="layui-inline">
-    								<label class="layui-form-label">
-    									工作类型
-    								</label>
-    								<div class="layui-input-block">
-    									<input type="text" name="workStyle" class="layui-input" value="全职" disabled="disabled">
-    								</div>
-    							</div>
-    						</td>
-    					</tr>
-    				</div>
-  			</tbody>
+        <thead>
+        <tr>
+            <th style="font-size: 18px;font-weight: bold;">求职意向</th>
+        </tr>
+        </thead>
+        <tbody>
+        <div class="layui-form-item">
+            <tr>
+                <td>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">
+                            期望职位
+                        </label>
+                        <div class="layui-input-block ">
+                            <input type="text" name="position" class="layui-input" value="" disabled="disabled">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">
+                            期望薪资
+                        </label>
+                        <div class="layui-input-block">
+                            <input type="text" name="salary" class="layui-input" value=""
+                                   disabled="disabled">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </div>
+        <div class="layui-form-item">
+            <tr>
+                <td>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">
+                            到岗时间
+                        </label>
+                        <div class="layui-input-block ">
+                            <input type="text" name="ondutytime" class="layui-input" value="" disabled="disabled">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">
+                            工作类型
+                        </label>
+                        <div class="layui-input-block">
+                            <input type="text" name="workstyle" class="layui-input" value="" disabled="disabled">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </div>
+        </tbody>
 
-  			<thead>
-    			<tr>
-    				<th style="font-size: 18px;font-weight: bold;">项目经验</th>
-    			</tr>
-  			</thead>
-  			<tbody>
-    			<div class="layui-form-item">
-      					<tr>
-      						<td>
-    							<label class="layui-form-label">
-    								项&nbsp;&nbsp;目&nbsp;&nbsp;名
-    							</label>
-    							<div class="layui-input-block " style="width: 22.5%" >
-      								<input type="text" name="project" class="layui-input" value="简历管理系统" disabled="disabled">
-   					 			</div>
-    						</td>
-    					</tr>
-    			</div>
-    			<div class="layui-form-item">
-      					<tr>
-      						<td>
-    							<label class="layui-form-label">
-    								项目描述
-    							</label>
-    							<div class="layui-input-block " style="width: 60.5%" >
-      								<textarea name="projectDesc"  class="layui-textarea" disabled="disabled">做一个HR可以审阅，求职者可以投递并管理自己简历的系统。
+        <thead>
+        <tr>
+            <th style="font-size: 18px;font-weight: bold;">项目经验</th>
+        </tr>
+        </thead>
+        <tbody id="project">
+
+        </tbody>
+
+        <thead>
+        <tr>
+            <th style="font-size: 18px;font-weight: bold;">个人技能</th>
+        </tr>
+        </thead>
+        <tbody id="skill">
+
+        </tbody>
+
+        <thead>
+        <tr>
+            <th style="font-size: 18px;font-weight: bold;">自我评价</th>
+        </tr>
+        </thead>
+        <tbody>
+        <div class="layui-form-item">
+            <tr>
+                <td>
+                    <label class="layui-form-label">
+                        自我评价：
+                    </label>
+                    <div class="layui-input-block " style="width: 60.5%;">
+      								<textarea name="selfAppraisal" class="layui-textarea" disabled="disabled">
       								</textarea>
-   					 			</div>
-    						</td>
-    					</tr>
-    			</div>
-    			<div class="layui-form-item">
-      					<tr>
-      						<td>
-    							<label class="layui-form-label">
-    								责任描述
-    							</label>
-    							<div class="layui-input-block " style="width: 60.5%" >
-      								<textarea name="roleDesc"  class="layui-textarea" disabled="disabled">TeamLeader——负责商讨每天吃什么，怎么吃。
-      								</textarea>
-   					 			</div>
-    						</td>
-    					</tr>
-    			</div>
-  			</tbody>
+                    </div>
+                </td>
+            </tr>
+        </div>
+        </tbody>
 
-  			<thead>
-    			<tr>
-    				<th style="font-size: 18px;font-weight: bold;">个人技能</th>
-    			</tr>
-  			</thead>
-  			<tbody>
-  				<div class="layui-form-item">
-      					<tr>
-      						<td>
-    							<label class="layui-form-label">
-    								MySQL
-    							</label>
-    							<div class="layui-input-block " style="width: 60.5%;margin-top:10px" >
+    </table>
 
-      								<div class="layui-progress layui-progress-big" lay-showPercent="yes">
-  										<div class="layui-progress-bar" lay-percent="50%"></div>
-									</div>
-   					 			</div>
-    						</td>
-    					</tr>
-    			</div>
-    			<div class="layui-form-item">
-      					<tr>
-      						<td>
-    							<label class="layui-form-label">
-    								Python
-    							</label>
-    							<div class="layui-input-block " style="width: 60.5%;margin-top:10px" >
+    <div style="margin-left: 21%" id="footer">
+        <!--<button class="layui-btn" onclick="javascript:window.location.href='resume_create.html'">-->
+            <!--<i class="layui-icon">&#xe642;</i>修改简历-->
+        <!--</button>-->
+        <!--&nbsp;&nbsp;&nbsp;&nbsp;-->
 
-      								<div class="layui-progress layui-progress-big" lay-showPercent="yes">
-  										<div class="layui-progress-bar" lay-percent="25%"></div>
-									</div>
-   					 			</div>
-    						</td>
-    					</tr>
-    			</div>
-    			<div class="layui-form-item">
-      					<tr>
-      						<td>
-    							<label class="layui-form-label">
-    								英语
-    							</label>
-    							<div class="layui-input-block " style="width: 60.5%;margin-top:10px" >
+        <button class="layui-btn" id="deliver">
+            <i class="layui-icon">&#xe609;</i>投递简历
+        </button>
+    </div>
+</div>
+<br><br><br>
 
-      								<div class="layui-progress layui-progress-big" lay-showPercent="yes">
-  										<div class="layui-progress-bar" lay-percent="75%"></div>
-									</div>
-   					 			</div>
-    						</td>
-    					</tr>
-    			</div>
-  			</tbody>
+<script>
+    layui.use(['form', 'laydate'], function () {
+        var form = layui.form;
 
-  			<thead>
-    			<tr>
-    				<th style="font-size: 18px;font-weight: bold;">自我评价</th>
-    			</tr>
-  			</thead>
-  			<tbody>
-  				<div class="layui-form-item">
-      					<tr>
-      						<td>
-    							<label class="layui-form-label">
-    								自我评价：
-    							</label>
-    							<div class="layui-input-block " style="width: 60.5%" >
-      								<textarea name="selfAppraisal"  class="layui-textarea" disabled="disabled">菜得抠脚，整天都被bug锤得头皮发麻。
-      								</textarea>
-   					 			</div>
-    						</td>
-    					</tr>
-    			</div>
-  			</tbody>
+        //监听提交
+        form.on('submit(resumeForm)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
 
-		</table>
-
-		<div style="margin-left: 21%">
-			<button class="layui-btn" onclick="javascript:window.location.href='resume_create.html'">
-  				<i class="layui-icon">&#xe642;</i>修改简历
-			</button>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<button class="layui-btn">
-  				<i class="layui-icon">&#xe609;</i>投递简历
-			</button>
-		</div>
-  </div>
-		<br><br><br>
-
-		<script >
-			layui.use(['form','laydate'], function(){
-  				var form = layui.form;
-
-          		//监听提交
-         		 form.on('submit(resumeForm)', function(data){
-            		layer.msg(JSON.stringify(data.field));
-           			 return false;
-          		});
-      		});
-
-      		layui.use('element', function(){
-  				var element = layui.element;
-			});
-		</script>
-
-
-	</body>
-
-
+    layui.use('element', function () {
+        var element = layui.element;
+    });
+</script>
+</body>
 </html>

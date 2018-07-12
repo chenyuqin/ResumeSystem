@@ -1,5 +1,6 @@
 package com.simple.resume.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -8,8 +9,10 @@ import java.util.Date;
 public class EduBackground {
     private Integer id;
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date startTime;
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date endTime;
 
     private String school;
@@ -18,7 +21,21 @@ public class EduBackground {
 
     private String description;
 
-    private Integer userid;
+    private Integer userID;
 
-    private Integer resumeid;
+    private Integer resumeId;
+
+    @Override
+    public String toString() {
+        return "EduBackground{" +
+                "id=" + id +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", school='" + school + '\'' +
+                ", major='" + major + '\'' +
+                ", description='" + description + '\'' +
+                ", userid=" + userID +
+                ", resumeid=" + resumeId +
+                '}';
+    }
 }

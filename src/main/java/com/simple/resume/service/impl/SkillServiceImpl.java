@@ -24,6 +24,17 @@ public class SkillServiceImpl implements SkillService {
 
     @Override
     public List<Skill> findAllByUserID(Integer userID) {
+
         return skillMapper.findAllByUserID(userID);
+    }
+
+    @Override
+    public void deleteAllByResumeId(Integer resumeId) {
+        skillMapper.deleteAllByResumeId(resumeId);
+    }
+
+    @Override
+    public void saveSkill(Skill skill) {
+        skillMapper.saveSkill(skill);
     }
 }

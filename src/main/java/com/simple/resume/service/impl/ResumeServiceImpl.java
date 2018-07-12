@@ -28,4 +28,14 @@ public class ResumeServiceImpl implements ResumeService {
     public Resume findByUserID(Integer userID) {
         return resumeMapper.findByUserID(userID);
     }
+
+    @Override
+    public void saveResume(Resume resume) {
+        resumeMapper.saveResume(resume);
+    }
+
+    @Override
+    public void updateResume(Resume resume) {
+        resumeMapper.updateResume(resume);
+    }
 }

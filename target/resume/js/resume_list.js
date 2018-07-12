@@ -14,7 +14,7 @@ $(function () {
                     ,data: result.data
                     ,cellMinWidth: 50 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
                     ,cols: [[
-                        {field:'id', title: '序号', width:80, align: 'center'}
+                        {field:'userID', title: 'ID', width:80, align: 'center'}
                         ,{field:'userName', title: '用户名', width:120, align: 'center'}
                         ,{field:'s_sex', title: '性别', width:70, align: 'center'}
                         ,{field:'phone', title: '电话',width:150, align: 'center'}
@@ -27,6 +27,16 @@ $(function () {
                     ]]
                     ,even: true
                     ,page: true
+                });
+
+                //监听工具条
+                table.on('tool(demo)', function (obj) {
+                    var data = obj.data;
+                    if (obj.event === 'detail') {
+                        var userID = data.userID;
+                        // $("#detail").attr("onclick", "WeAdminShow('查看简历','preview.html?userID=" + userID + "')");
+                        WeAdminShow("查看简历", "preview.html?userID=" + userID);
+                    }
                 });
 
             });

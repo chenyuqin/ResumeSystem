@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class SkillSearchVO {
+    private Integer userID;
+
     private String userName;
 
     private String s_sex;

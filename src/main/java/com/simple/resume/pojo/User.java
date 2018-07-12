@@ -37,4 +37,23 @@ public class User implements Serializable {
     private Timestamp updateTime;
 
     private String description;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userID=" + userID +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", sex=" + sex +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", activeCode='" + activeCode + '\'' +
+                ", activeStatus=" + activeStatus +
+                ", isLogined=" + isLogined +
+                ", createTime=" + createTime +
+                ", activeTime=" + activeTime +
+                ", updateTime=" + updateTime +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

@@ -9,4 +9,8 @@ public interface SkillService {
     List<Integer> findUserIDByName(String name);
 
     List<Skill> findAllByUserID(Integer userID);
+
+    void deleteAllByResumeId(Integer resumeId);
+
+    void saveSkill(Skill skill);
 }

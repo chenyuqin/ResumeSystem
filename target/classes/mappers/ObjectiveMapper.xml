@@ -4,4 +4,28 @@
     <select id="findByResumeId" parameterType="int" resultType="com.simple.resume.pojo.Objective">
         select * from objective where resumeId=#{resumeId};
     </select>
+
+    <insert id="saveObjective" parameterType="com.simple.resume.pojo.Objective">
+        insert into objective(position,salary,ondutytime,workstyle,userID,resumeId)
+        values (#{position},#{salary},#{ondutytime},#{workstyle},#{userID},#{resumeId});
+    </insert>
+
+    <update id="updateObjective" parameterType="com.simple.resume.pojo.Objective">
+        update objective
+        <set>
+            <if test="position != null">
+                position = #{position},
+            </if>
+            <if test="salary != null">
+                salary = #{salary},
+            </if>
+            <if test="ondutytime != null">
+                ondutytime = #{ondutytime},
+            </if>
+            <if test="workstyle != null">
+                workstyle = #{workstyle},
+            </if>
+        </set>
+        where resumeId = #{resumeId}
+    </update>
 </mapper>

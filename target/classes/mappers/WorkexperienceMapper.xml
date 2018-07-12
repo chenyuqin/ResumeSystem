@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.simple.resume.mapper.WorkExperienceMapper">
+    <delete id="deleteAllByResumeId" parameterType="int">
+        delete from workexperience where resumeId=#{resumeId};
+    </delete>
+
+    <insert id="saveWorkexperience" parameterType="com.simple.resume.pojo.Workexperience">
+        insert into workexperience(projectName, projectDesc,roleDesc,resumeId,userID)
+        values(#{projectName},#{projectDesc},#{roleDesc},#{resumeId},#{userID});
+    </insert>
+
+    <select id="findAllByUserID" parameterType="int" resultType="com.simple.resume.pojo.Workexperience">
+        select * from workexperience where userID=#{userID};
+    </select>
+</mapper>

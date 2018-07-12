@@ -1,5 +1,6 @@
 package com.simple.resume.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.sql.Timestamp;
@@ -15,9 +16,10 @@ public class Resume {
 
     private Integer sex;
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date birthday;
 
-    private Integer experience;
+    private String experience;
 
     private String nativePlace;
 
@@ -29,13 +31,17 @@ public class Resume {
 
     private String picture;
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm")
     private Timestamp createTime;
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm")
     private Timestamp updateTime;
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm")
     private Timestamp deliverTime;
 
     private Integer status;
 
     private String selfAppraisal;
+
 }

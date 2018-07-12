@@ -10,13 +10,26 @@ public class Objective {
 
     private String position;
 
-    private Integer salary;
+    private String salary;
 
     private String ondutytime;
 
     private Integer workstyle;
 
-    private Integer userid;
+    private Integer userID;
 
-    private Integer resumeid;
+    private Integer resumeId;
+
+    @Override
+    public String toString() {
+        return "Objective{" +
+                "id=" + id +
+                ", position='" + position + '\'' +
+                ", salary=" + salary +
+                ", ondutytime='" + ondutytime + '\'' +
+                ", workstyle=" + workstyle +
+                ", userid=" + userID +
+                ", resumeid=" + resumeId +
+                '}';
+    }
 }

@@ -12,4 +12,8 @@ public interface ResumeService {
     List<Resume> findAllByStatus(Integer status);
 
     Resume findByUserID(Integer userID);
+
+    void saveResume(Resume resume);
+
+    void updateResume(Resume resume);
 }

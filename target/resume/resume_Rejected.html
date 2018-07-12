@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/weadmin.css">
     <link rel="stylesheet" href="./css/bootstrap-reset.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/resume_Rejected.js"></script>
+    <script src="./layui/layui.js" charset="utf-8"></script>
+    <script src="./layui/lay/modules/element.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/admin.js"></script>
     <style type="text/css">
         .layui-form-switch {
             width: 55px;
@@ -47,24 +52,26 @@
 
 <div style="margin-left: 30px;margin-right: 30px;margin-top: 9px">
     <span style="font-size: 17px;">&nbsp;已Rejected简历列表:</span>
-    <table class="layui-hide" id="test">
+    <table class="layui-hide" id="test" lay-filter="demo">
 
     </table>
 
 </div>
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="detail" id="detail">查看</a>
     <!--<button class="layui-btn" lay-submit>查看</button>-->
 </script>
 <script type="text/html" id="view">
     <i class="iconfont" style="color: red;">&#59036;</i>
 </script>
 
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/resume_Rejected.js"></script>
-<script src="./layui/layui.js" charset="utf-8"></script>
-<script src="./layui/lay/modules/element.js" type="text/javascript" charset="utf-8"></script>
-<script src="./js/admin.js"></script>
+<script type="text/javascript">
+    layui.config({
+        base: 'js/',
+        version: '101100'
+    }).use('admin');
+</script>
+
 </body>
 
 </html>

@@ -8,17 +8,13 @@ import java.util.Date;
 public class Workexperience {
     private Integer id;
 
-    private Date starttime;
+    private String projectName;
 
-    private Date endtime;
+    private String projectDesc;
 
-    private String company;
-
-    private String job;
+    private String roleDesc;
 
     private Integer userID;
 
-    private Integer resumeid;
-
-    private String description;
+    private Integer resumeId;
 }

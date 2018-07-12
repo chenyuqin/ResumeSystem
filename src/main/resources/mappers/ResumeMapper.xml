@@ -12,4 +12,52 @@
     <select id="findByUserID" parameterType="int" resultType="com.simple.resume.pojo.Resume">
         select * from resume where userID=#{userID};
     </select>
+
+    <insert id="saveResume" useGeneratedKeys="true" keyProperty="id" parameterType="com.simple.resume.pojo.Resume">
+        insert into resume(userID,userName,sex,birthday,experience,nativePlace,education,phone,email,selfAppraisal)
+        values (#{userID},#{userName},#{sex},#{birthday},#{experience},#{nativePlace},#{education},#{phone},#{email},#{selfAppraisal});
+    </insert>
+
+    <update id="updateResume" useGeneratedKeys="true" keyProperty="id" parameterType="com.simple.resume.pojo.Resume">
+        update resume
+        <set>
+            <if test="userName != null">
+                userName = #{userName},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="experience != null">
+                experience = #{experience},
+            </if>
+            <if test="nativePlace != null">
+                nativePlace = #{nativePlace},
+            </if>
+            <if test="education != null">
+                education = #{education},
+            </if>
+            <if test="selfAppraisal != null">
+                selfAppraisal = #{selfAppraisal},
+            </if>
+            <if test="updateTime != null">
+                updateTime = #{updateTime},
+            </if>
+            <if test="deliverTime != null">
+                deliverTime = #{deliverTime},
+            </if>
+            <if test="status != null">
+                status = #{status}
+            </if>
+        </set>
+        where userID = #{userID}
+    </update>
 </mapper>

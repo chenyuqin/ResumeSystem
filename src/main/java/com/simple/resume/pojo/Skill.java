@@ -8,7 +8,7 @@ public class Skill {
 
     private String name;
 
-    private Integer value;
+    private String value;
 
     private Integer userID;
 

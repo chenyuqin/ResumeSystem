@@ -9,6 +9,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/resume_create.js"></script>
     <link rel="stylesheet" href="css/font.css">
     <link rel="stylesheet" href="css/weadmin.css">
     <script type="application/javascript" src="layui/layui.all.js"></script>
@@ -27,7 +28,7 @@
         <a disabled="true">首页</a>
         <a disabled="true">个人简历</a>
         <a><cite>修改简历</cite></a>
-      </span>
+    </span>
     <a class="layui-btn layui-btn-sm"
        style="line-height:1.6em; margin-top:4px; margin-right: 100px; padding-left: 13px; padding-top: 5px; float:right"
        href="javascript:location.replace(location.href);" title="刷新">
@@ -38,7 +39,7 @@
 
     <div style="padding-top: 15px;padding-left: 367px">
         <!--       <i class="layui-icon layui-icon-template-1 " style="font-size: 40px; color:#393D49"></i>
-              <a style="font-size: 20px; color: black;">&nbsp;创建简历</a> -->
+          <a style="font-size: 20px; color: black;">&nbsp;创建简历</a> -->
         <a disabled="true">
             <i class="iconfont" style="font-size: 24px; color: black;">&#59219;&nbsp;&nbsp;修改简历</i>
         </a>
@@ -46,7 +47,7 @@
     <br>
 
 
-    <div class="layui-form" lay-filter="resumeForm">
+    <form class="layui-form" lay-filter="resumeForm">
         <div class="layui-collapse" lay-filter="resumeCollapse" style="width: 70%">
 
             <div class="layui-colla-item">
@@ -59,7 +60,7 @@
                                 姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名
                             </label>
                             <div class="layui-input-block ">
-                                <input type="text" name="name" required lay-verify="required" placeholder="请输入姓名"
+                                <input type="text" name="userName" required lay-verify="required" placeholder="请输入姓名"
                                        autocomplete="off" class="layui-input">
                             </div>
                         </div>
@@ -69,8 +70,8 @@
                                 性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别
                             </label>
                             <div class="layui-input-block">
-                                <input type="radio" name="sex" value="nan" title="男" checked>
-                                <input type="radio" name="sex" value="nv" title="女">
+                                <input type="radio" name="sex" value="男" title="男" checked>
+                                <input type="radio" name="sex" value="女" title="女">
                             </div>
                         </div>
                     </div>
@@ -81,24 +82,17 @@
                                 出生年月
                             </label>
                             <div class="layui-input-block ">
-                                <input type="text" name="birth" required lay-verify="required" placeholder="例：1995-09"
-                                       autocomplete="off" class="layui-input">
+                                <input class="layui-input" placeholder="请选择" name="birthday" id="birthday">
                             </div>
                         </div>
 
                         <div class="layui-inline">
                             <label class="layui-form-label">
-                                工作年限
+                                工作经验
                             </label>
                             <div class="layui-input-block">
-                                <select name="experience" lay-verify="required">
-                                    <option value=""></option>
-                                    <option value="0">半年以内</option>
-                                    <option value="1">半年~1年</option>
-                                    <option value="2">1~2年</option>
-                                    <option value="3">2~3年</option>
-                                    <option value="4">3年以上</option>
-                                </select>
+                                <input type="text" name="experience" required lay-verify="required" placeholder="例：3年"
+                                       autocomplete="off" class="layui-input">
                             </div>
                         </div>
                     </div>
@@ -118,13 +112,13 @@
                             <label class="layui-form-label">
                                 学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历
                             </label>
-                            <div class="layui-input-block">
-                                <select name="educatior" lay-verify="required">
+                            <div class="layui-input-block" style="width: 189.6px;">
+                                <select name="education" lay-verify="required">
                                     <option value=""></option>
-                                    <option value="0">高中</option>
-                                    <option value="1">本科</option>
-                                    <option value="2">硕士</option>
-                                    <option value="3">博士</option>
+                                    <option value="高中">高中</option>
+                                    <option value="本科">本科</option>
+                                    <option value="硕士">硕士</option>
+                                    <option value="博士">博士</option>
 
                                 </select>
                             </div>
@@ -145,7 +139,8 @@
                         <div class="layui-inline" style="width: 41.7%">
                             <label class="layui-form-label">现居住地</label>
                             <div class="layui-input-block">
-                                <input type="text" name="address" required lay-verify="required" placeholder="请输入现居住地"
+                                <input type="text" name="nativePlace" required lay-verify="required"
+                                       placeholder="请输入现居住地"
                                        autocomplete="off" class="layui-input">
                             </div>
                         </div>
@@ -227,19 +222,9 @@
                             <label class="layui-form-label">
                                 期望薪资
                             </label>
-                            <div class="layui-input-block ">
-                                <select name="salary" lay-verify="required">
-                                    <option value=""></option>
-                                    <option value="0">2000~2999元/月</option>
-                                    <option value="1">3000~3999元/月</option>
-                                    <option value="2">4000~4999元/月</option>
-                                    <option value="3">5000~5999元/月</option>
-                                    <option value="4">6000~6999元/月</option>
-                                    <option value="5">7000~7999元/月</option>
-                                    <option value="6">8000~8999元/月</option>
-                                    <option value="7">9000~9999元/月</option>
-                                    <option value="8">1w以上/面议</option>
-                                </select>
+                            <div class="layui-input-block">
+                                <input type="text" name="salary" required lay-verify="required" placeholder="请输入"
+                                       autocomplete="off" class="layui-input">
                             </div>
                         </div>
                     </div>
@@ -250,13 +235,13 @@
                                 到岗时间
                             </label>
                             <div class="layui-input-block ">
-                                <select name="ondutyTime" lay-verify="required">
+                                <select name="ondutytime" lay-verify="required">
                                     <option value=""></option>
-                                    <option value="0">随时</option>
-                                    <option value="1">1周内</option>
-                                    <option value="2">1个月内</option>
-                                    <option value="3">3个月内</option>
-                                    <option value="4">待定</option>
+                                    <option value="随时">随时</option>
+                                    <option value="1周内">1周内</option>
+                                    <option value="1个月内">1个月内</option>
+                                    <option value="3个月内">3个月内</option>
+                                    <option value="待定">待定</option>
                                 </select>
                             </div>
                         </div>
@@ -265,12 +250,11 @@
                             <label class="layui-form-label">
                                 工作类型
                             </label>
-                            <div class="layui-input-block">
-                                <select name="workStyle" lay-verify="required">
+                            <div class="layui-input-block" style="width: 189.6px;">
+                                <select name="workstyle" lay-verify="required">
                                     <option value=""></option>
-                                    <option value="0">兼职</option>
-                                    <option value="1">实习</option>
-                                    <option value="2">全职</option>
+                                    <option value="0">实习</option>
+                                    <option value="1">全职</option>
                                 </select>
                             </div>
                         </div>
@@ -332,14 +316,14 @@
 
         <br>
         <!--<div class="layui-form-item">-->
-            <div style="margin-left: 21%;margin-bottom: 20px">
-                <button class="layui-btn">立即提交</button>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="reset" class="layui-btn layui-btn-normal">全部重置</button>
-            </div>
+        <div style="margin-left: 21%;margin-bottom: 20px">
+            <button id="submit" class="layui-btn">立即提交</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="reset" class="layui-btn layui-btn-normal">全部重置</button>
+        </div>
         <!--</div>-->
 
-    </div>
+    </form>
 </div>
 
 
@@ -369,74 +353,19 @@
             elem: '#endTime' //指定元素
         });
 
-    });
+        laydate.render({
+            elem: '#birthday' //指定元素
+        });
 
+    });
 
     layui.use(['form', 'laydate'], function () {
         var form = layui.form;
 
         //监听提交
         form.on('submit(resumeForm)', function (data) {
-            layer.msg(JSON.stringify(data.field));
             return false;
-
-
         });
-
-
-        $("#bt11").click(function () {
-            $("#d1").append('<div><div class="layui-form-item" >' +
-                '<div class="layui-form-label">项&nbsp;&nbsp;目&nbsp;&nbsp;名</div>' +
-                '<div class="layui-input-block" style="width:40%">' +
-                '<input class="layui-input" type="text" name="project" placeholder="请输入项目名称" autocomplete="off">' +
-                '</div></div>' +
-
-                '<div class="layui-form-item" style="width:80%">' +
-
-                '<div class="layui-form-label ">项目描述</div>' +
-                '<div class="layui-input-block">' +
-                '<textarea class="layui-textarea" placeholder="请描述项目的基本信息和内容" name="projectDesc" type="textarea"></textarea>' +
-                '</div>' +
-                '</div>' +
-
-                '<div class="layui-form-item" style="width:80%">' +
-                '<div class="layui-form-label ">责任描述</div>' +
-                '<div class="layui-input-block">' +
-                '<textarea class="layui-textarea" placeholder="请描述自己在项目中所扮演的角色和承担的责任" name="roleDesc" ></textarea>' +
-                '</div>' +
-
-                '</div>' + '<br><br><br></div>'
-            );
-        });
-
-
-        $("#bt12").click(function () {
-            $("#d1").children("div:last-child").remove();
-
-        });
-
-        $("#bt21").click(function () {
-            $("#d2").append('<div><div class="layui-form-item" >' +
-                '<div class="layui-form-label">技&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;能</div>' +
-                '<div class="layui-input-block" style="width:40%">' +
-                '<input class="layui-input" type="text" name="project" placeholder="请输入技能名称" autocomplete="off">' +
-                '</div></div>' +
-
-                '<div class="layui-form-item" >' +
-                '<div class="layui-form-label">掌握程度</div>' +
-                '<div class="layui-input-block" style="width:40%">' +
-                '<input class="layui-input" type="text" name="level" placeholder="一般 / 良好 / 熟练 / 精通">' +
-                '</div>' +
-
-                '</div>' + '<br></div>'
-            );
-        });
-
-        $("#bt22").click(function () {
-            $("#d2").children("div:last-child").remove();
-
-        });
-
 
         form.render();
 

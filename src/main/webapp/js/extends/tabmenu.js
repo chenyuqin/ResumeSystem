@@ -17,6 +17,7 @@ layui.define(['jquery', 'element'], function(exports) {
         tabMenu = function() {
             this.config = {
                 item: '#WeTabTip',
+                autoRefresh: true,
                 closed: true
             };
         },

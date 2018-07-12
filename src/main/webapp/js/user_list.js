@@ -29,6 +29,16 @@ $(function () {
                     ,page: true
                 });
 
+                //监听工具条
+                table.on('tool(demo)', function (obj) {
+                    var data = obj.data;
+                    if (obj.event === 'detail') {
+                        var userID = data.userID;
+                        // $("#detail").attr("onclick", "WeAdminShow('查看简历','preview.html?userID=" + userID + "')");
+                        WeAdminShow("查看简历", "preview.html?userID=" + userID);
+                    }
+                });
+
             });
         }
     });

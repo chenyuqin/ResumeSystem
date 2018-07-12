@@ -2,6 +2,7 @@ package com.simple.resume.controller;
 
 import com.simple.resume.VO.UserInfoVO;
 import com.simple.resume.common.*;
+import com.simple.resume.pojo.Resume;
 import com.simple.resume.pojo.User;
 import com.simple.resume.service.ResumeService;
 import com.simple.resume.service.UserService;
@@ -183,8 +184,12 @@ public class UserController {
                 userInfoVO.setS_sex(user.getSex() == 0 ? "男" : "女");
                 userInfoVO.setA_activeStatus(user.getActiveStatus() == 0 ? "否" : "是");
                 BeanUtils.copyProperties(userInfoVO, user);
-                int check = resumeService.checkByUserID(user.getUserID());
-                userInfoVO.setIsDeliver(check == 0 ? "否" : "是");
+                Resume resume = resumeService.findByUserID(user.getUserID());
+                if (resume == null || resume.getStatus() == 3) {
+                    userInfoVO.setIsDeliver("否");
+                } else {
+                    userInfoVO.setIsDeliver("是");
+                }
                 userInfoVOs.add(userInfoVO);
             } catch (Exception e) {
                 e.printStackTrace();

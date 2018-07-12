@@ -8,4 +8,13 @@
     <select id="findAllByUserID" parameterType="int" resultType="com.simple.resume.pojo.Skill">
         select * from skill where userID=#{userID};
     </select>
+
+    <delete id="deleteAllByResumeId" parameterType="int">
+        delete from skill where resumeId=#{resumeId};
+    </delete>
+
+    <insert id="saveSkill" parameterType="com.simple.resume.pojo.Skill">
+        insert into skill(name, value,userID,resumeId)
+        values(#{name},#{value},#{userID},#{resumeId});
+    </insert>
 </mapper>

@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 @Data
 public class ResumeListVO {
-    private Integer id;
+    private Integer userID;
 
     private String userName;
 
