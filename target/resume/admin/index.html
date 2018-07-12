@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>简历管理系统</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/weadmin.css">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../layui/layui.js" charset="utf-8"></script>
+    <script src="index.js"></script>
+</head>
+
+<body>
+<!-- 顶部开始 -->
+<div class="container">
+    <div class="logo">
+        <a href="javascript:void(0);" style="padding-top: 3px"><i class="iconfont">&#59042;</i>&nbsp;&nbsp;简历管理系统</a>
+    </div>
+    <div class="left_open">
+        <i title="展开左侧栏" class="iconfont">&#xe699;</i>
+    </div>
+
+    <ul class="layui-nav right" lay-filter="">
+        <li class="layui-nav-item">
+            <a id="currentUser" href="javascript:void(0);"></a>
+            <dl class="layui-nav-child">
+                <!-- 二级菜单 -->
+                <!--<dd>-->
+                <!--<a onclick="WeAdminShow('个人信息','404.html')">个人信息</a>-->
+                <!--</dd>-->
+                <!--<dd>-->
+                <!--<a onclick="WeAdminShow('切换帐号','404.html')">切换帐号</a>-->
+                <!--</dd>-->
+                <dd>
+                    <a class="loginout" id="logout" style="text-align: center;">登出</a>
+                </dd>
+            </dl>
+        </li>
+    </ul>
+
+</div>
+<!-- 顶部结束 -->
+<!-- 中部开始 -->
+<!-- 左侧菜单开始 -->
+<div class="left-nav">
+    <div id="side-nav">
+        <ul id="nav">
+            <li>
+                <a>
+                    <i class="iconfont">&#xe6b8;</i>
+                    <cite>用户管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="../user_list.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>用户列表</cite>
+
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a>
+                    <i class="iconfont">&#59171;</i>
+                    <!-- <img src="static/images/resumeSet.png"> -->
+                    <cite>简历管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="javascript:;">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>简历查看</cite>
+                            <i class="iconfont nav_right">&#xe697;</i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a _href="../resume_list.html">
+                                    <i class="iconfont">&#xe6a7;</i>
+                                    <cite>&nbsp;未处理简历</cite>
+                                </a>
+                            </li>
+                            <li>
+                                <a _href="../resume_Approved.html">
+                                    <i class="iconfont">&#xe6a7;</i>
+                                    <cite>&nbsp;已Approved简历</cite>
+                                </a>
+                            </li>
+                            <li>
+                                <a _href="../resume_Rejected.html">
+                                    <i class="iconfont">&#xe6a7;</i>
+                                    <cite>&nbsp;已Rejected简历</cite>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <li>
+                        <a>
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>简历检索</cite>
+                            <i class="iconfont nav_right">&#xe697;</i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a _href="../all_search.html">
+                                    <i class="iconfont">&#xe6a7;</i>
+                                    <cite>&nbsp;全文检索</cite>
+                                </a>
+                            </li>
+                            <li>
+                                <a _href="../skill_search.html">
+                                    <i class="iconfont">&#xe6a7;</i>
+                                    <cite>&nbsp;按技能检索</cite>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a _href="../404.html">
+                    <i class="iconfont">&#59128;</i>
+                    <cite>导出简历</cite>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- <div class="x-slide_left"></div> -->
+<!-- 左侧菜单结束 -->
+<!-- 右侧主体开始 -->
+<div class="page-content">
+    <div class="layui-tab tab" lay-filter="wenav_tab" id="WeTabTip" lay-allowclose="true">
+        <ul class="layui-tab-title" id="tabName">
+            <li>首页</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <iframe src='../welcome.html' frameborder="0" scrolling="yes"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    layui.config({
+        base: '../js/',
+        version: '101100'
+    }).use('admin');
+
+</script>
+</body>
+<!--Tab菜单右键弹出菜单-->
+<ul class="rightMenu" id="rightMenu">
+    <li data-type="fresh">刷新</li>
+    <li data-type="current">关闭当前</li>
+    <li data-type="other">关闭其它</li>
+    <li data-type="all">关闭所有</li>
+</ul>
+
+</html>

@@ -51,7 +51,7 @@ public class UserController {
         try {
             userService.saveUser(user);
             ///邮件的内容
-            StringBuffer sb=new StringBuffer("<h2>简历管理系统</h2>请点击下面的链接激活账号:<br>");
+            StringBuffer sb = new StringBuffer("<h2>简历管理系统</h2>请点击下面的链接激活账号:<br>");
             sb.append("http://127.0.0.1:8090/common/active?email=");
             sb.append(user.getEmail());
             sb.append("&activeCode=");
@@ -70,7 +70,6 @@ public class UserController {
     }
 
 
-
     //用户登录
     @PostMapping(value = "login", produces = "application/json;charset=utf-8")
     @ResponseBody
@@ -83,6 +82,19 @@ public class UserController {
             json = JSONSerializer.toJSON(
                     new JsonResult<User>(1, "用户ID或者密码错误！", null));
             return json.toString();
+        } else if (user.getPermission() == 1) {
+            user.setIsLogined(1);
+            userService.updateUser(user);
+            request.getSession().setAttribute("userID", userID);
+            if (rememberMe) {
+                String token = jwtUtils.createJWT(userID, user.getUserName(), 7 * 24);
+                Cookie userToken = new Cookie("userToken", token);
+                userToken.setMaxAge(60 * 60 * 24 * 7);
+                userToken.setPath("/");
+                response.addCookie(userToken);
+            }
+            json = JSONSerializer.toJSON(new JsonResult<User>(5, "登录成功！", user));
+            return json.toString();
         } else {
             if (user.getActiveStatus() == 0) {
                 json = JSONSerializer.toJSON(
@@ -94,7 +106,7 @@ public class UserController {
                 return json.toString();
             } else {
                 //如果当前已经有用户登录了
-                Integer current = (Integer)request.getSession().getAttribute("userID");
+                Integer current = (Integer) request.getSession().getAttribute("userID");
                 if (current != null) {
                     User currentUser = new User();
                     currentUser.setUserID(current);
@@ -108,7 +120,7 @@ public class UserController {
                 if (rememberMe) {
                     String token = jwtUtils.createJWT(userID, user.getUserName(), 7 * 24);
                     Cookie userToken = new Cookie("userToken", token);
-                    userToken.setMaxAge(60*60*24*7);
+                    userToken.setMaxAge(60 * 60 * 24 * 7);
                     userToken.setPath("/");
                     response.addCookie(userToken);
                 }
@@ -129,7 +141,7 @@ public class UserController {
         //销毁session
         request.getSession().invalidate();
 
-        Cookie userToken=new Cookie("userToken",null);
+        Cookie userToken = new Cookie("userToken", null);
         userToken.setMaxAge(0); //删除该Cookie
         userToken.setPath("/");
         response.addCookie(userToken);

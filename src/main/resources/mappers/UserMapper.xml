@@ -15,7 +15,7 @@
     </select>
 
     <select id="findByUserIDandPassword" parameterType="Map" resultType="com.simple.resume.pojo.User">
-        select userID,userName,sex,phone,email,activeStatus,isLogined,description
+        select userID,userName,sex,phone,email,activeStatus,isLogined,description,permission
         from user where userID=#{userID} and password=#{password};
     </select>
 
@@ -60,6 +60,6 @@
     </update>
 
     <select id="findAllUser" resultType="com.simple.resume.pojo.User">
-        select * from user;
+        select * from user where permission=0;
     </select>
 </mapper>

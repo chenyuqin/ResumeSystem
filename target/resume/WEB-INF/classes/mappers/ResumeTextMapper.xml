@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.simple.resume.mapper.ResumeTextMapper">
+    <select id="findByResumeId" parameterType="int" resultType="com.simple.resume.pojo.ResumeText">
+        select * from resumeText where resumeId=#{resumeId};
+    </select>
+
+    <insert id="saveResumeText" parameterType="com.simple.resume.pojo.ResumeText">
+        insert into resumeText(resumeId, info, userID)
+        values(#{resumeId},#{info},#{userID});
+    </insert>
+
+    <update id="updateResumeText" parameterType="com.simple.resume.pojo.ResumeText">
+        update resumeText
+        <set>
+            <if test="info != null">
+                info = #{info},
+            </if>
+            <if test="userID != null">
+                userID = #{userID}
+            </if>
+        </set>
+        where resumeId = #{resumeId};
+    </update>
+
+    <select id="findByKeyWord" parameterType="String" resultType="Integer">
+        select userID from resumeText where info like "%"#{keyWord}"%";
+    </select>
+</mapper>

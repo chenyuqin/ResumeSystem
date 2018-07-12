@@ -20,6 +20,11 @@ $(function () {
                     localStorage.setItem('userName', result.data.userName);
                     window.location.href = "index.html";
                     return false;
+                } else if (result.state == 5) {
+                    alert(result.message);
+                    localStorage.setItem('userID', userID);
+                    localStorage.setItem('userName', result.data.userName);
+                    window.location.href = "admin/index.html";
                 } else {
                     alert(result.message);
                 }

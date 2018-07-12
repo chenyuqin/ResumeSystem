@@ -44,6 +44,9 @@ public class ResumeController {
     @Autowired
     WorkexperienceService workexperienceService;
 
+    @Autowired
+    ResumeTextService resumeTextService;
+
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
@@ -57,7 +60,7 @@ public class ResumeController {
             ResumeListVO resumeListVO = new ResumeListVO();
             try {
                 resumeListVO.setS_sex(resume.getSex() == 0 ? "男" : "女");
-                resumeListVO.setDeliver_time(resume.getDeliverTime().toString().substring(0, resume.getDeliverTime().toString().length()-2));
+                resumeListVO.setDeliver_time(resume.getDeliverTime().toString().substring(0, resume.getDeliverTime().toString().length() - 2));
                 BeanUtils.copyProperties(resumeListVO, resume);
                 Objective objective = objectiveService.findByResumeId(resume.getId());
                 BeanUtils.copyProperties(resumeListVO, objective);
@@ -72,7 +75,7 @@ public class ResumeController {
 
     @RequestMapping(value = "/create", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public String create(@RequestParam("params") String params, @RequestParam("userID") Integer userID) throws UnsupportedEncodingException {
+    public String create(@RequestParam("params") String params, @RequestParam("userID") Integer userID) throws UnsupportedEncodingException, InvocationTargetException, IllegalAccessException {
         //获得所有简历表单的参数，包括基本信息、求职意向、教育背景、项目经验、技能、自我评价
         String[] strings = params.split("&");
         //所有简历信息的实体类
@@ -83,20 +86,20 @@ public class ResumeController {
         List<Skill> skills = new ArrayList<>();//技能
 
         Map<String, String> map = new HashMap<>();
-        for (int i = 0; i < strings.length;i++) {
+        for (int i = 0; i < strings.length; i++) {
             String[] split = strings[i].split("=");
             map.put(split[0], URLDecoder.decode(split[1], "UTF-8"));
             if (split[0].equals("projectName")) {
                 Workexperience workexperience = new Workexperience();
                 workexperience.setProjectName(URLDecoder.decode(split[1], "UTF-8"));
-                workexperience.setProjectDesc(URLDecoder.decode(strings[i+1].split("=")[1], "UTF-8"));
+                workexperience.setProjectDesc(URLDecoder.decode(strings[i + 1].split("=")[1], "UTF-8"));
                 workexperience.setRoleDesc(URLDecoder.decode(strings[i + 2].split("=")[1], "UTF-8"));
                 workexperiences.add(workexperience);
             }
             if (split[0].equals("name")) {
                 Skill skill = new Skill();
                 skill.setName(URLDecoder.decode(split[1], "UTF-8"));
-                skill.setValue(URLDecoder.decode(strings[i+1].split("=")[1], "UTF-8"));
+                skill.setValue(URLDecoder.decode(strings[i + 1].split("=")[1], "UTF-8"));
                 skills.add(skill);
             }
         }
@@ -146,6 +149,29 @@ public class ResumeController {
                 workexperience.setResumeId(resume1.getId());
                 workexperienceService.saveWorkexperience(workexperience);
             }
+            //处理用于全文检索的长字符串
+            ResumeVO resumeVO = new ResumeVO();
+            BeanUtils.copyProperties(resumeVO, resume);
+            resumeVO.setS_sex(resume.getSex() == 0 ? "男" : "女");
+            resumeVO.setBirthday(df2.format(resume.getBirthday()));
+            BeanUtils.copyProperties(resumeVO, eduBackground);
+            resumeVO.setStartTime(df2.format(eduBackground.getStartTime()));
+            resumeVO.setEndTime(df2.format(eduBackground.getEndTime()));
+            BeanUtils.copyProperties(resumeVO, objective);
+            resumeVO.setW_workstyle(objective.getWorkstyle() == 0 ? "实习" : "全职");
+            resumeVO.setSkills(skills);
+            resumeVO.setWorkexperiences(workexperiences);
+
+            ResumeText resumeText = new ResumeText();
+            resumeText.setResumeId(resume1.getId());
+            resumeText.setUserID(userID);
+            resumeText.setInfo(JSONSerializer.toJSON(resumeVO).toString().replaceAll("\r\n", " "));
+            if (resumeTextService.findByResumeId(resume1.getId()) == null) {
+                resumeTextService.saveResumeText(resumeText);
+            } else {
+                resumeTextService.updateResumeText(resumeText);
+            }
+
         } else {
             resumeService.saveResume(resume);
             eduBackground.setResumeId(resume.getId());
@@ -159,6 +185,29 @@ public class ResumeController {
             for (Workexperience workexperience : workexperiences) {
                 workexperience.setResumeId(resume.getId());
                 workexperienceService.saveWorkexperience(workexperience);
+            }
+
+            //处理用于全文检索的长字符串
+            ResumeVO resumeVO = new ResumeVO();
+            BeanUtils.copyProperties(resumeVO, resume);
+            resumeVO.setS_sex(resume.getSex() == 0 ? "男" : "女");
+            resumeVO.setBirthday(df2.format(resume.getBirthday()));
+            BeanUtils.copyProperties(resumeVO, eduBackground);
+            resumeVO.setStartTime(df2.format(eduBackground.getStartTime()));
+            resumeVO.setEndTime(df2.format(eduBackground.getEndTime()));
+            BeanUtils.copyProperties(resumeVO, objective);
+            resumeVO.setW_workstyle(objective.getWorkstyle() == 0 ? "实习" : "全职");
+            resumeVO.setSkills(skills);
+            resumeVO.setWorkexperiences(workexperiences);
+
+            ResumeText resumeText = new ResumeText();
+            resumeText.setResumeId(resume.getId());
+            resumeText.setUserID(userID);
+            resumeText.setInfo(JSONSerializer.toJSON(resumeVO).toString().replaceAll("\r\n", " "));
+            if (resumeTextService.findByResumeId(resume.getId()) == null) {
+                resumeTextService.saveResumeText(resumeText);
+            } else {
+                resumeTextService.updateResumeText(resumeText);
             }
         }
         return JSONSerializer.toJSON(new JsonResult<>()).toString();

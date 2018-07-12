@@ -7,10 +7,7 @@ import com.simple.resume.pojo.Objective;
 import com.simple.resume.pojo.Resume;
 import com.simple.resume.pojo.Skill;
 import com.simple.resume.pojo.User;
-import com.simple.resume.service.ObjectiveService;
-import com.simple.resume.service.ResumeService;
-import com.simple.resume.service.SkillService;
-import com.simple.resume.service.UserService;
+import com.simple.resume.service.*;
 import net.sf.json.JSON;
 import net.sf.json.JSONSerializer;
 import org.apache.commons.beanutils.BeanUtils;
@@ -36,6 +33,9 @@ public class SearchController {
 
     @Autowired
     SkillService skillService;
+
+    @Autowired
+    ResumeTextService resumeTextService;
 
     @RequestMapping(value = "/skill", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
@@ -66,6 +66,22 @@ public class SearchController {
             skillSearchVOs.add(skillSearchVO);
         }
         JSON json = JSONSerializer.toJSON(new JsonResult<List<SkillSearchVO>>(0, "按技能查询成功!", skillSearchVOs));
+        return json.toString();
+    }
+
+    @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public String all(@RequestParam("keyWord") String keyWord) {
+
+        List<Integer> userIDs = resumeTextService.findByKeyWord(keyWord);
+        List<Resume> resumeList = new ArrayList<>();
+        for (Integer userID : userIDs) {
+            Resume resume = resumeService.findByUserID(userID);
+            if (resume.getStatus() != 3) {
+                resumeList.add(resume);
+            }
+        }
+        JSON json = JSONSerializer.toJSON(new JsonResult<List<Resume>>(0, "全文检索成功!", resumeList));
         return json.toString();
     }
 

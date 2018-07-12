@@ -59,14 +59,14 @@
     <div>
 
         <span style="font-size: 18px;">全文检索：</span>
-        <input type="text" id="key_word" required lay-verify="required"
+        <input type="text" id="keyWord" required lay-verify="required"
                placeholder="请输入关键字搜索" autocomplete="off" class="keyword_input">
 
         <button id="search" class="btn btn-default" type="button" style="margin-left:10px;">搜索</button>
     </div>
 
     <div>
-        <table class="layui-hide" id="test">
+        <table class="layui-hide" id="test" lay-filter="demo">
 
         </table>
 
@@ -86,14 +86,29 @@
 </script>
 
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="detail" id="detail">查看</a>
     <!--<button class="layui-btn" lay-submit>查看</button>-->
+</script>
+<script type="text/html" id="sex_view">
+    {{#  if(d.sex === 0){ }}
+        男
+    {{#  } else { }}
+        女
+    {{#  } }}
 </script>
 <script src="js/jquery-2.1.4.min.js"></script>
 <script src="js/all_search.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="layui/layui.js" charset="utf-8"></script>
 <script src="layui/lay/modules/element.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+    layui.config({
+        base: 'js/',
+        version: '101100'
+    }).use('admin');
+</script>
+
 </body>
 
 </html>

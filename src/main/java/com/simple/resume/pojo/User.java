@@ -27,6 +27,8 @@ public class User implements Serializable {
 
     private Integer isLogined;
 
+    private Integer permission;
+
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm")
     private Timestamp createTime;
 
