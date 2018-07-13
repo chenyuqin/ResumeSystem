@@ -6,19 +6,18 @@ import com.simple.resume.pojo.Resume;
 import com.simple.resume.pojo.User;
 import com.simple.resume.service.ResumeService;
 import com.simple.resume.service.UserService;
-import io.jsonwebtoken.Claims;
 import net.sf.json.JSON;
 import net.sf.json.JSONSerializer;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import sun.security.provider.MD5;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,11 +42,16 @@ public class UserController {
 
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    //用户注册
+    /**
+     * 用户注册,需要发送邮件到用户邮箱
+     * @param user
+     * @return
+     */
     @RequestMapping(value = "register", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
     public String saveUser(User user) {
         user.setActiveCode(MD5Util.encode2hex(user.getEmail()));
+        user.setPassword(MD5Util.encode2hex(user.getPassword()));
         try {
             userService.saveUser(user);
             ///邮件的内容
@@ -70,22 +74,32 @@ public class UserController {
     }
 
 
-    //用户登录
+    /**
+     * 用户登录，包含remember me功能，使用cookie实现
+     * @param userID
+     * @param password
+     * @param rememberMe
+     * @param response
+     * @return
+     * @throws IOException
+     */
     @PostMapping(value = "login", produces = "application/json;charset=utf-8")
     @ResponseBody
     public String checkLogin(@RequestParam("userID") int userID, @RequestParam("password") String password,
                              @RequestParam("rememberMe") Boolean rememberMe, HttpServletResponse response) throws IOException {
 
         JSON json = null;
-        User user = userService.findByUserIDandPassword(userID, password);
+        User user = userService.findByUserIDandPassword(userID, MD5Util.encode2hex(password));
         if (user == null) {
             json = JSONSerializer.toJSON(
                     new JsonResult<User>(1, "用户ID或者密码错误！", null));
             return json.toString();
         } else if (user.getPermission() == 1) {
+            //permission为1表示管理员
             user.setIsLogined(1);
             userService.updateUser(user);
             request.getSession().setAttribute("userID", userID);
+            //如果用户选择了记住我功能，就生成一个加密的token作为cookie存在用户的浏览器
             if (rememberMe) {
                 String token = jwtUtils.createJWT(userID, user.getUserName(), 7 * 24);
                 Cookie userToken = new Cookie("userToken", token);
@@ -105,13 +119,12 @@ public class UserController {
                         new JsonResult<User>(3, "用户已登录，不允许重复登录!", null));
                 return json.toString();
             } else {
-                //如果当前已经有用户登录了
+                //如果当前在同一个浏览器窗口已经有用户登录了，则提示用户先登出已有的用户(技术有限!)
                 Integer current = (Integer) request.getSession().getAttribute("userID");
                 if (current != null) {
-                    User currentUser = new User();
-                    currentUser.setUserID(current);
-                    currentUser.setIsLogined(0);
-                    userService.updateUser(currentUser);
+                    json = JSONSerializer.toJSON(
+                            new JsonResult<User>(6, "不允许在同一个浏览器窗口(不同标签页)登录多个用户,请先登出已有的用户!", null));
+                    return json.toString();
                 }
                 //对当前登录用户的处理
                 user.setIsLogined(1);
@@ -130,7 +143,12 @@ public class UserController {
         return json.toString();
     }
 
-    //用户退出
+    /**
+     * 用户登出
+     * @param userID
+     * @param response
+     * @return
+     */
     @RequestMapping("logout")
     @ResponseBody
     public String logout(@RequestParam("userID") int userID, HttpServletResponse response) {
@@ -150,15 +168,25 @@ public class UserController {
         return json.toString();
     }
 
+    /**
+     * 用户邮箱修改密码
+     * @param userID
+     * @param password
+     */
     @RequestMapping(value = "changePassword", method = RequestMethod.POST)
     @ResponseBody
     public void changePassword(@RequestParam("userID") int userID, @RequestParam("password") String password) {
         User user = new User();
         user.setUserID(userID);
-        user.setPassword(password);
+        user.setPassword(MD5Util.encode2hex(password));
         userService.updateUser(user);
     }
 
+    /**
+     * 更新用户信息
+     * @param user
+     * @return
+     */
     @RequestMapping(value = "updateUser", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
     public String updateUser(User user) {
@@ -167,23 +195,34 @@ public class UserController {
         return new JsonResult().toString();
     }
 
+    /**
+     * 用户正常修改密码
+     * @param userID
+     * @param password
+     * @param newpassword
+     * @return
+     */
     @RequestMapping(value = "chg_passwd", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
     public String chg_passwd(@RequestParam("userID") Integer userID,
                              @RequestParam("password") String password,
                              @RequestParam("newpassword") String newpassword) {
-        User user = userService.findByUserIDandPassword(userID, password);
+        User user = userService.findByUserIDandPassword(userID, MD5Util.encode2hex(password));
         if (user == null) {
             JSON json = JSONSerializer.toJSON(new JsonResult<User>(1, "原密码错误!", null));
             return json.toString();
         }
         user.setUpdateTime(Timestamp.valueOf(df.format(new Date())));
-        user.setPassword(newpassword);
+        user.setPassword(MD5Util.encode2hex(newpassword));
         userService.updateUser(user);
         JSON json = JSONSerializer.toJSON(new JsonResult<User>(0, "修改密码成功!", null));
         return json.toString();
     }
 
+    /**
+     * 显示用户列表
+     * @return
+     */
     @RequestMapping(value = "userList", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
     public String userList() {

@@ -7,6 +7,9 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
+/**
+ * 用户类
+ */
 @Data
 public class User implements Serializable {
     private Integer userID;

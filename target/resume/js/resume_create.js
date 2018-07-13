@@ -85,6 +85,7 @@ $(function () {
 
     $("#submit").click(function () {
         var userID = localStorage.getItem("userID");
+        console.log($("form").serialize());
         $.ajax({
             url: "resume/create",
             data: {"params": $("form").serialize(), "userID": userID},

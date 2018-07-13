@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.util.Date;
 
+/**
+ * 教育背景类，与简历一对一
+ */
 @Data
 public class EduBackground {
     private Integer id;

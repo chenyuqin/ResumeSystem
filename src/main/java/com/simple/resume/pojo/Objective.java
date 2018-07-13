@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.util.Date;
 
+/**
+ * 求职意向类，与简历一对一
+ */
 @Data
 public class Objective {
     private Integer id;

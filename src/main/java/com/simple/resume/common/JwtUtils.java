@@ -11,6 +11,7 @@ import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
 import java.util.Date;
 
+//用来生成token
 @Repository
 public class JwtUtils {
 

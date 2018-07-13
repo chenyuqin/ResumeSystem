@@ -2,6 +2,7 @@ package com.simple.resume.common;
 
 import java.io.Serializable;
 
+//封装返回到前端的JSON数据，内含状态码、结果信息和封装的实体类
 public class JsonResult<T> implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int state;

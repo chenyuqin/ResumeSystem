@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.util.Date;
 
+/**
+ * 项目经验类，与简历一对多
+ */
 @Data
 public class Workexperience {
     private Integer id;

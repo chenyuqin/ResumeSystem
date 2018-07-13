@@ -23,7 +23,7 @@ import java.util.Date;
 
 /**
  * 由于使用cookie的机制实现remember me功能，
- * 所以不能拦截login和register页面所有验证之类的接口，所以单独写一个controller声明这类接口,
+ * 所以不能拦截login和register页面所有验证之类的接口，因此单独写一个controller声明这类接口,
  * 不然会导致GET 405问题
  */
 @Controller
@@ -40,7 +40,11 @@ public class NotInterceptController {
 
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    //ajax异步检测注册的userID是否存在
+    /**
+     * ajax异步检测注册的userID是否存在
+     * @param userID
+     * @return
+     */
     @RequestMapping(value = "checkUserID", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
     public String checkUserID(@RequestParam("userID") int userID) {
@@ -54,7 +58,11 @@ public class NotInterceptController {
         return json.toString();
     }
 
-    //ajax异步检测注册的email是否存在
+    /**
+     * ajax异步检测注册的email是否存在
+     * @param email
+     * @return
+     */
     @RequestMapping(value = "checkEmail", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
     public String checkUserID(@RequestParam("email") String email) {
@@ -68,7 +76,12 @@ public class NotInterceptController {
         return json.toString();
     }
 
-    //验证用户点击激活链接后的邮箱和激活码是否正确，决定用户是否激活
+    /**
+     * 验证用户点击激活链接后的邮箱和激活码是否正确，决定用户是否激活
+     * @param email
+     * @param activeCode
+     * @return
+     */
     @RequestMapping("active")
     public String active(@RequestParam("email") String email, @RequestParam("activeCode") String activeCode) {
         User user = userService.findByEmail(email);
@@ -86,7 +99,11 @@ public class NotInterceptController {
         return "failed";
     }
 
-    //忘记密码:发送一封邮件给用户，邮件中包含修改密码的链接
+    /**
+     * 忘记密码:发送一封邮件给用户，邮件中包含修改密码的链接
+     * @param email
+     * @return
+     */
     @PostMapping(value = "forgetPassword", produces = "application/json;charset=utf-8")
     @ResponseBody
     public String forgetPassword(@RequestParam("email") String email) {
@@ -110,7 +127,14 @@ public class NotInterceptController {
         }
     }
 
-    //验证用户邮箱中的修改密码邮件里的接口
+    /**
+     * 验证用户邮箱中的修改密码邮件里的接口
+     * @param token
+     * @param model
+     * @param response
+     * @return
+     * @throws IOException
+     */
     @RequestMapping("alter")
     public String alter(@RequestParam("token") String token, Model model,
                         HttpServletResponse response) throws IOException {

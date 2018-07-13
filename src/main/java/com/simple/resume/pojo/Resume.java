@@ -6,6 +6,9 @@ import lombok.Data;
 import java.sql.Timestamp;
 import java.util.Date;
 
+/**
+ * 简历的基本信息类
+ */
 @Data
 public class Resume {
     private Integer id;

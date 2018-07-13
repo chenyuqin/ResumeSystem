@@ -26,7 +26,7 @@ $(function () {
         var phone = $("#phone").val();
         var email = $("#email").val();
         var description = $("#description").val();
-        var sex = $("input[name='sex']").val();
+        var sex = $("input[name='sex']:checked").val();
         $.ajax({
             url : "user/updateUser",
             data : {"userName":userName,"phone":phone,"email":email,"sex":sex,"userID":userID,"description":description},

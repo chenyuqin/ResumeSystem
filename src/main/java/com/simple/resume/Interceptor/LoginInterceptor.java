@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * TODO 拦截登录验证，这里只是简单处理，很多都没拦截
+ */
 public class LoginInterceptor implements HandlerInterceptor {
 
     @Autowired

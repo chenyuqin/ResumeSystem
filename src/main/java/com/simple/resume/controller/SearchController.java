@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 用于全文检索和技能检索
+ */
 @Controller
 @RequestMapping("search")
 public class SearchController {
@@ -37,6 +40,11 @@ public class SearchController {
     @Autowired
     ResumeTextService resumeTextService;
 
+    /**
+     * 技能检索
+     * @param name
+     * @return
+     */
     @RequestMapping(value = "/skill", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
     public String searchBySkill(@RequestParam("name") String name) {
@@ -69,6 +77,11 @@ public class SearchController {
         return json.toString();
     }
 
+    /**
+     * 全文检索
+     * @param keyWord
+     * @return
+     */
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
     public String all(@RequestParam("keyWord") String keyWord) {

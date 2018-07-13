@@ -130,6 +130,7 @@ $(function () {
             dataType: "JSON",
             success: function (result) {
                 alert(result.message);
+                window.location.reload();
             }
         });
     });

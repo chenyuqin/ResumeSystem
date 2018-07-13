@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.simple.resume.mapper.EduBackgroundMapper">
     <select id="findByResumeId" parameterType="int" resultType="com.simple.resume.pojo.EduBackground">
+        <!--TODO 不建议对数据库的查询字段用 * 直接处理，建议把需要的字段都写出来 -->
         select * from eduBackground where resumeId=#{resumeId};
     </select>
 

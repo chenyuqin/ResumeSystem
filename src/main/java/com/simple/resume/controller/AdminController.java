@@ -15,6 +15,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//TODO 此处只是模拟实现权限控制，考虑用Shiro或者Spring Security控制为好，不过没时间写了
+//偷懒方法:将管理员和普通用户的页面和接口都分开用拦截器做各自的拦截
 @Controller
 @RequestMapping("admin/user")
 public class AdminController {

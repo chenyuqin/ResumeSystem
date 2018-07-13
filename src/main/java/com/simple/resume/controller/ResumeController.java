@@ -51,6 +51,11 @@ public class ResumeController {
 
     SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
 
+    /**
+     * 用于显示各类简历
+     * @param status 0为未处理，1为通过，2为拒绝
+     * @return
+     */
     @RequestMapping(value = "/resumeList", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
     public String resumeList(@RequestParam("status") Integer status) {
@@ -73,6 +78,15 @@ public class ResumeController {
         return json.toString();
     }
 
+    /**
+     * 用于用户创建简历
+     * @param params 包含简历表单的所有信息，再自行处理
+     * @param userID
+     * @return
+     * @throws UnsupportedEncodingException
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
     @RequestMapping(value = "/create", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
     public String create(@RequestParam("params") String params, @RequestParam("userID") Integer userID) throws UnsupportedEncodingException, InvocationTargetException, IllegalAccessException {
@@ -131,7 +145,7 @@ public class ResumeController {
             e.printStackTrace();
         }
 
-        //用户已经保存过简历，现在的操作是更新
+        //如果用户已经保存过简历，那现在的操作就是更新
         if (resumeService.findByUserID(userID) != null) {
             Resume resume1 = resumeService.findByUserID(userID);
             resumeService.updateResume(resume);
@@ -149,6 +163,7 @@ public class ResumeController {
                 workexperience.setResumeId(resume1.getId());
                 workexperienceService.saveWorkexperience(workexperience);
             }
+
             //处理用于全文检索的长字符串
             ResumeVO resumeVO = new ResumeVO();
             BeanUtils.copyProperties(resumeVO, resume);
@@ -173,6 +188,7 @@ public class ResumeController {
             }
 
         } else {
+            //新创建简历
             resumeService.saveResume(resume);
             eduBackground.setResumeId(resume.getId());
             eduBackgroundService.saveEdu(eduBackground);
@@ -213,6 +229,13 @@ public class ResumeController {
         return JSONSerializer.toJSON(new JsonResult<>()).toString();
     }
 
+    /**
+     * 预览简历
+     * @param userID
+     * @return
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
     @RequestMapping(value = "/preview", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
     public String preview(@RequestParam("userID") Integer userID) throws InvocationTargetException, IllegalAccessException {
@@ -244,6 +267,11 @@ public class ResumeController {
         return json.toString();
     }
 
+    /**
+     * 用户投递简历
+     * @param userID
+     * @return
+     */
     @RequestMapping(value = "/deliver", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
     public String deliver(@RequestParam("userID") Integer userID) {
@@ -259,6 +287,12 @@ public class ResumeController {
         return json.toString();
     }
 
+    /**
+     * 修改用户的简历状态
+     * @param userID
+     * @param status
+     * @return
+     */
     @RequestMapping(value = "/operatorStatus", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
     public String operatorStatus(@RequestParam("userID") Integer userID, @RequestParam("status") Integer status) {
