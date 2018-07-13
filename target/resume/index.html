@@ -33,10 +33,10 @@
             <dl class="layui-nav-child">
                 <!-- 二级菜单 -->
                 <!--<dd>-->
-                    <!--<a onclick="WeAdminShow('个人信息','404.html')">个人信息</a>-->
+                <!--<a onclick="WeAdminShow('个人信息','404.html')">个人信息</a>-->
                 <!--</dd>-->
                 <!--<dd>-->
-                    <!--<a onclick="WeAdminShow('切换帐号','404.html')">切换帐号</a>-->
+                <!--<a onclick="WeAdminShow('切换帐号','404.html')">切换帐号</a>-->
                 <!--</dd>-->
                 <dd>
                     <a class="loginout" id="logout" style="text-align: center;">登出</a>
@@ -52,89 +52,6 @@
 <div class="left-nav">
     <div id="side-nav">
         <ul id="nav">
-            <!--<li>-->
-                <!--<a>-->
-                    <!--<i class="iconfont">&#xe6b8;</i>-->
-                    <!--<cite>用户管理</cite>-->
-                    <!--<i class="iconfont nav_right">&#xe697;</i>-->
-                <!--</a>-->
-                <!--<ul class="sub-menu">-->
-                    <!--<li>-->
-                        <!--<a _href="user_list.html">-->
-                            <!--<i class="iconfont">&#xe6a7;</i>-->
-                            <!--<cite>用户列表</cite>-->
-
-                        <!--</a>-->
-                    <!--</li>-->
-                <!--</ul>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<a>-->
-                    <!--<i class="iconfont">&#59171;</i>-->
-                    <!--&lt;!&ndash; <img src="static/images/resumeSet.png"> &ndash;&gt;-->
-                    <!--<cite>简历管理</cite>-->
-                    <!--<i class="iconfont nav_right">&#xe697;</i>-->
-                <!--</a>-->
-                <!--<ul class="sub-menu">-->
-                    <!--<li>-->
-                        <!--<a href="javascript:;">-->
-                            <!--<i class="iconfont">&#xe6a7;</i>-->
-                            <!--<cite>简历查看</cite>-->
-                            <!--<i class="iconfont nav_right">&#xe697;</i>-->
-                        <!--</a>-->
-                        <!--<ul class="sub-menu">-->
-                            <!--<li>-->
-                                <!--<a _href="resume_list.html">-->
-                                    <!--<i class="iconfont">&#xe6a7;</i>-->
-                                    <!--<cite>&nbsp;未处理简历</cite>-->
-                                <!--</a>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<a _href="resume_Approved.html">-->
-                                    <!--<i class="iconfont">&#xe6a7;</i>-->
-                                    <!--<cite>&nbsp;已Approved简历</cite>-->
-                                <!--</a>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<a _href="resume_Rejected.html">-->
-                                    <!--<i class="iconfont">&#xe6a7;</i>-->
-                                    <!--<cite>&nbsp;已Rejected简历</cite>-->
-                                <!--</a>-->
-                            <!--</li>-->
-                        <!--</ul>-->
-
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<a>-->
-                            <!--<i class="iconfont">&#xe6a7;</i>-->
-                            <!--<cite>简历检索</cite>-->
-                            <!--<i class="iconfont nav_right">&#xe697;</i>-->
-                        <!--</a>-->
-                        <!--<ul class="sub-menu">-->
-                            <!--<li>-->
-                                <!--<a _href="all_search.html">-->
-                                    <!--<i class="iconfont">&#xe6a7;</i>-->
-                                    <!--<cite>&nbsp;全文检索</cite>-->
-                                <!--</a>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<a _href="skill_search.html">-->
-                                    <!--<i class="iconfont">&#xe6a7;</i>-->
-                                    <!--<cite>&nbsp;按技能检索</cite>-->
-                                <!--</a>-->
-                            <!--</li>-->
-                        <!--</ul>-->
-                    <!--</li>-->
-                <!--</ul>-->
-            <!--</li>-->
-
-            <!--<li>-->
-                <!--<a _href="404.html">-->
-                    <!--<i class="iconfont">&#59128;</i>-->
-                    <!--<cite>导出简历</cite>-->
-                <!--</a>-->
-            <!--</li>-->
-
             <li>
                 <a>
                     <i class="iconfont">&#59044;</i>
@@ -206,6 +123,89 @@
         base: './js/',
         version: '101100'
     }).use('admin');
+
+</script>
+
+<script type="text/javascript">
+    var websocket = null;
+    //判断当前浏览器是否支持WebSocket
+    if ('WebSocket' in window) {
+        websocket = new WebSocket("ws://localhost:8090/websocket");
+    }
+    else {
+        alert('当前浏览器不支持websocket!')
+    }
+
+    //连接发生错误的回调方法
+    websocket.onerror = function () {
+        console.log("WebSocket连接发生错误");
+    };
+
+    //连接成功建立的回调方法
+    websocket.onopen = function () {
+        console.log("WebSocket连接成功");
+        var userID = localStorage.getItem("userID");
+        websocket.send("c_userID:" + userID);
+    }
+
+    //接收到消息的回调方法
+    websocket.onmessage = function (event) {
+        if (event.data == "Approve") {
+            var result = '恭喜，您的简历处理结果为<font color="green"> [通过] </font>!<br>详情请到邮箱中查看!';
+        } else {
+            var result = '很遗憾，您的简历处理结果为<font color="red"> [拒绝] </font>!<br>详情请到邮箱中查看!';
+        }
+        var type = 'auto';
+        layer.open({
+            type: 1
+            , title: "您的简历得到处理啦!"
+            , offset: type //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+            , id: 'layerDemo' + type //防止重复弹出
+            , content: '<div style="padding: 20px 20px;"><center>' + result + '</center></div>'
+            , btn: '关闭'
+            , btnAlign: 'c' //按钮居中
+            , shade: 0 //不显示遮罩
+            , yes: function () {
+                layer.closeAll();
+            }
+        });
+    }
+
+    //连接关闭的回调方法
+    websocket.onclose = function () {
+        console.log("WebSocket连接关闭");
+        var userID = localStorage.getItem("userID");
+        localStorage.setItem("userName", null);
+        localStorage.setItem("userID", null);
+        $.ajax({
+            url: "user/logout",
+            data: {"userID": userID},
+            type: "get",
+            dataType: "JSON",
+            async:false,
+            success: function (result) {
+
+            }
+        });
+    }
+
+    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+    window.onbeforeunload = function () {
+        var userID = localStorage.getItem("userID");
+        localStorage.setItem("userName", null);
+        localStorage.setItem("userID", null);
+        $.ajax({
+            url: "user/logout",
+            data: {"userID": userID},
+            type: "get",
+            dataType: "JSON",
+            async:false,
+            success: function (result) {
+
+            }
+        });
+        websocket.close();
+    }
 
 </script>
 </body>

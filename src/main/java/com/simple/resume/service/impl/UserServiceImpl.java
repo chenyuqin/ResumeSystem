@@ -50,4 +50,9 @@ public class UserServiceImpl implements UserService {
     public void updateUser(User user) {
         userMapper.updateUser(user);
     }
+
+    @Override
+    public List<Integer> findAdminLogin() {
+        return userMapper.findAdminLogin();
+    }
 }

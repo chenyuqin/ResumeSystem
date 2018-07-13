@@ -4,6 +4,7 @@ import com.simple.resume.VO.ResumeListVO;
 import com.simple.resume.VO.ResumeVO;
 import com.simple.resume.VO.UserInfoVO;
 import com.simple.resume.common.JsonResult;
+import com.simple.resume.common.MyWebSocket;
 import com.simple.resume.pojo.*;
 import com.simple.resume.service.*;
 import net.sf.json.JSON;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URLDecoder;
@@ -28,6 +30,9 @@ import java.util.*;
 @Controller
 @RequestMapping("/resume")
 public class ResumeController {
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     ResumeService resumeService;
@@ -274,7 +279,7 @@ public class ResumeController {
      */
     @RequestMapping(value = "/deliver", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public String deliver(@RequestParam("userID") Integer userID) {
+    public String deliver(@RequestParam("userID") Integer userID) throws IOException {
         Resume resume = resumeService.findByUserID(userID);
         if (resume.getStatus() != 3) {
             JSON json = JSONSerializer.toJSON(new JsonResult(1, "该简历已经投递!", null));
@@ -283,6 +288,14 @@ public class ResumeController {
         resume.setStatus(0);
         resume.setDeliverTime(Timestamp.valueOf(df.format(new Date())));
         resumeService.updateResume(resume);
+
+        Objective objective = objectiveService.findByResumeId(resumeService.findByUserID(userID).getId());
+
+        List<Integer> adminIDs = userService.findAdminLogin();
+        for (Integer adminID : adminIDs) {
+            MyWebSocket.webSocketMap.get(adminID).sendMessage("GetResume:" + objective.getPosition());
+        }
+
         JSON json = JSONSerializer.toJSON(new JsonResult(0, "简历投递成功,请耐心等待邮件回复!", null));
         return json.toString();
     }
@@ -295,14 +308,16 @@ public class ResumeController {
      */
     @RequestMapping(value = "/operatorStatus", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public String operatorStatus(@RequestParam("userID") Integer userID, @RequestParam("status") Integer status) {
+    public String operatorStatus(@RequestParam("userID") Integer userID, @RequestParam("status") Integer status) throws IOException {
         Resume resume = resumeService.findByUserID(userID);
         resume.setStatus(status);
         resumeService.updateResume(resume);
         if (status == 1) {
+            MyWebSocket.webSocketMap.get(userID).sendMessage("Approve");
             JSON json = JSONSerializer.toJSON(new JsonResult(0, "简历处理成功，处理结果为 [通过] !", null));
             return json.toString();
         } else {
+            MyWebSocket.webSocketMap.get(userID).sendMessage("Reject");
             JSON json = JSONSerializer.toJSON(new JsonResult(0, "简历处理成功，处理结果为 [拒绝] !", null));
             return json.toString();
         }

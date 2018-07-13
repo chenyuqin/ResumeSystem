@@ -12,4 +12,5 @@ public interface UserService {
     User findByEmail(String email);
     void updateUser(User user);
     List<User> findAllUser();
+    List<Integer> findAdminLogin();
 }

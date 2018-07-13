@@ -13,7 +13,7 @@
         <tx:attributes>
             <tx:method name="do*" propagation="REQUIRED" />
             <tx:method name="delete*" propagation="REQUIRED" />
-            <tx:method name="merge*" propagation="REQUIRED" />
+            <tx:method name="find*" propagation="REQUIRED" />
             <tx:method name="add*" propagation="REQUIRED" />
             <tx:method name="save*" propagation="REQUIRED" />
             <tx:method name="create*" propagation="REQUIRED" />

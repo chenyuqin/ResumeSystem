@@ -62,4 +62,8 @@
     <select id="findAllUser" resultType="com.simple.resume.pojo.User">
         select * from user where permission=0;
     </select>
+
+    <select id="findAdminLogin" resultType="Integer">
+        select userID from user where isLogined=1 and permission=1;
+    </select>
 </mapper>

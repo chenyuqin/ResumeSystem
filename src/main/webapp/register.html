@@ -18,11 +18,37 @@
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style-responsive.css" rel="stylesheet"/>
+    <style>
+        body {
+            background-image: url("images/bg.jpg");
+            background-repeat: no-repeat;
+            background-size: 100%;
+            position: relative;
+        }
+
+        #slogan {
+            font-size: 36px;
+            color: #fff;
+            position: absolute;
+            left: 250px;
+            bottom: -360px;
+        }
+
+        #slogan span {
+            color: #ff0
+        }
+
+        #slogan span.selected {
+            background: #09f;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body class="login-body">
 
-<div class="container">
+<div id="slogan" data-text="Maybe we'll be stronger"></div>
+<div class="container" style="position: absolute; right:-200px; bottom: -700px;">
 
     <div class="form-signin">
         <h2 class="form-signin-heading"><img src="images/logo.png">&nbsp;简历系统-注册</h2>
@@ -60,6 +86,6 @@
 
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/register.js"></script>
-
+<script src="js/background.js"></script>
 </body>
 </html>

@@ -145,7 +145,7 @@ public class NotInterceptController {
             return "error";
         } else {
             Integer userID = (Integer) claims.get("userID");
-            return "redirect:/alterPassword.html?userID=" + userID;
+            return "redirect:/alterPassword.html?userID=" + userID + "&token=" + token;
         }
     }
 }

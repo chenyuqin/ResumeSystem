@@ -31,13 +31,6 @@
         <li class="layui-nav-item">
             <a id="currentUser" href="javascript:void(0);"></a>
             <dl class="layui-nav-child">
-                <!-- 二级菜单 -->
-                <!--<dd>-->
-                <!--<a onclick="WeAdminShow('个人信息','404.html')">个人信息</a>-->
-                <!--</dd>-->
-                <!--<dd>-->
-                <!--<a onclick="WeAdminShow('切换帐号','404.html')">切换帐号</a>-->
-                <!--</dd>-->
                 <dd>
                     <a class="loginout" id="logout" style="text-align: center;">登出</a>
                 </dd>
@@ -128,12 +121,12 @@
                 </ul>
             </li>
 
-            <li>
-                <a _href="../404.html">
-                    <i class="iconfont">&#59128;</i>
-                    <cite>导出简历</cite>
-                </a>
-            </li>
+            <!--<li>-->
+                <!--<a _href="../404.html">-->
+                    <!--<i class="iconfont">&#59128;</i>-->
+                    <!--<cite>导出简历</cite>-->
+                <!--</a>-->
+            <!--</li>-->
         </ul>
     </div>
 </div>
@@ -157,6 +150,74 @@
         base: '../js/',
         version: '101100'
     }).use('admin');
+
+</script>
+<script type="text/javascript">
+    var websocket = null;
+    //判断当前浏览器是否支持WebSocket
+    if ('WebSocket' in window) {
+        websocket = new WebSocket("ws://localhost:8090/websocket");
+    }
+    else {
+        alert('当前浏览器不支持websocket!')
+    }
+
+    //连接发生错误的回调方法
+    websocket.onerror = function () {
+        console.log("WebSocket连接发生错误");
+    };
+
+    //连接成功建立的回调方法
+    websocket.onopen = function () {
+        console.log("WebSocket连接成功");
+        var userID = localStorage.getItem("userID");
+        websocket.send("c_userID:" + userID);
+    }
+
+    //接收到消息的回调方法
+    websocket.onmessage = function (event) {
+        var obj = event.data.split(":")[1];
+        layer.msg('<center>收到应聘职位为 [' + obj + '] 的新简历啦!<br>请到未处理简历中查看!</center>', {
+            time: 10000 //10s后自动关闭
+        });
+    }
+
+    //连接关闭的回调方法
+    websocket.onclose = function () {
+        console.log("WebSocket连接关闭");
+        var userID = localStorage.getItem("userID");
+        localStorage.setItem("userName", null);
+        localStorage.setItem("userID", null);
+        $.ajax({
+            url: "user/logout",
+            data: {"userID": userID},
+            type: "get",
+            dataType: "JSON",
+            async:false,
+            success: function (result) {
+
+            }
+        });
+    }
+
+    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+    window.onbeforeunload = function () {
+        var userID = localStorage.getItem("userID");
+        localStorage.setItem("userName", null);
+        localStorage.setItem("userID", null);
+        $.ajax({
+            url: "user/logout",
+            data: {"userID": userID},
+            type: "get",
+            dataType: "JSON",
+            async:false,
+            success: function (result) {
+
+            }
+        });
+        websocket.close();
+    }
+
 
 </script>
 </body>
